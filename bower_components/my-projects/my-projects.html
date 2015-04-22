@@ -1,0 +1,33 @@
+<link rel="import" href="../core-media-query/core-media-query.html">
+<polymer-element name="my-projects">
+	<template>
+		<style>
+			.projects {
+				margin: 50px auto;
+			}
+		</style>
+			<div class="projects">
+				<core-media-query query="max-width:640px" queryMatches="{{phoneScreen}}"></core-media-query>
+				<div layout vertical?="{{phoneScreen}}" horizontal?={{!phoneScreen}}">
+					<div auto-vertical flex><img src="../../images/health_plan.png" height="227" width="227"/></div>
+					<div auto-vertical><img src="../../images/blonyx.png"/></div>
+					<div auto-vertical flex><img src="../../images/notepad.png"/></div>
+				</div>
+				
+				<div layout vertical?="{{phoneScreen}}" horizontal?={{!phoneScreen}}">
+					<div auto-vertical flex><img src="../../images/gold_can.jpg"/></div>
+					<div auto-vertical><img src="../../images/health_plan.png" height="227" width="227"/></div>
+					<div auto-vertical flex><img src="../../images/notepad2.png"/></div>
+				</div>
+				
+				<div layout vertical?="{{phoneScreen}}" horizontal?={{!phoneScreen}}">
+					<div auto-vertical flex><img src="../../images/notepad.png"/></div>
+					<div auto-vertical><img src="../../images/nxt_robot.jpg"/></div>
+					<div auto-vertical flex><img src="../../images/health_plan.png" height="227" width="227"/></div>
+				</div>
+			</div>
+	</template>
+	<script>
+		Polymer();
+	</script>
+</polymer>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Kenny Hui</title>
+	    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+		<link rel="import" href="portfolio.html">
+    </head>
+    <body unresolved>
+        <core-header-panel mode="seamed">
+            <core-toolbar>
+                <p>
+                    <b>Kenny Hui</b>
+                </p>
+	        </core-toolbar>
+			 <div id="cd-container" fit>
+				<view-pager swipeDisabled="false" class="pink" selected="0">
+					<view-fragment name="<b>ABOUT ME</b>">
+						<div class="pager-content">
+							<about-me></about-me>
+						</div>
+					</view-fragment>
+					<view-fragment name="<b>PROJECTS</b>">
+						<div class="pager-content">
+							<my-projects></my-projects>
+						</div>
+					</view-fragment>
+					<view-fragment name="<b>CONTACT</b>">
+						<div class="pager-content">
+							<contact-form></contact-form> 
+						</div>
+					</view-fragment>
+				</view-pager>
+			</div>
+        </core-header-panel>
+		<script src="js/app.js"></script>
+    </body>
+</html>
