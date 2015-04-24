@@ -9,8 +9,20 @@
 		<link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
 		<link rel="import" href="../bower_components/core-icons/core-icons.html">
 		<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
-		<link rel="stylesheet" href="../css/base.css" shim-shadowdom="">	
+		<link rel="stylesheet" href="../css/base.css" shim-shadowdom="">
+		<link rel="stylesheet" href="../css/bootstrap.min.css">		
 		<link rel="icon" href="../images/favicon.ico">
+		<style>
+			html,body {
+				height: 100%;
+				margin: 0;
+				background-color: #cfd8dc;
+				font-family: 'RobotoDraft', sans-serif;
+			}	
+			#gold { 
+				margin: auto;
+			}
+		</style>
     </head>
     <body fullbleed layout vertical>
 			<core-header-panel flex>
@@ -19,7 +31,8 @@
 					<span>The Golden Can</span>
 				</core-toolbar>
 				<div class="container">
-					
+					<img src="../images/goldcan/goldencan1.gif" id="gold" class="img-responsive"><br>
+					<img src="../images/goldcan/goldencan2.gif" id="gold" class="img-responsive">
 				</div>
 			</core-header-panel>
     </body>

@@ -10,7 +10,19 @@
 		<link rel="import" href="../bower_components/core-icons/core-icons.html">
 		<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 		<link rel="stylesheet" href="../css/base.css" shim-shadowdom="">	
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
 		<link rel="icon" href="../images/favicon.ico">
+		<style>
+			html,body {
+				height: 100%;
+				margin: 0;
+				background-color: #cfd8dc;
+				font-family: 'RobotoDraft', sans-serif;
+			}	
+			#whitedoor{
+				margin: auto;
+			}
+		</style>
     </head>
     <body fullbleed layout vertical>
 			<core-header-panel flex>
@@ -19,6 +31,24 @@
 					<span>NXT Robot</span>
 				</core-toolbar>
 				<div class="container">
+					<img src="../images/nxtrobot/whitedoor.jpg" id="whitedoor" class="img-responsive"><br>
+					<div align="center" class="embed-responsive embed-responsive-16by9">
+						<video controls class="embed-responsive-item">
+							<source src="../images/nxtrobot/maze.mp4" type=video/mp4>
+						</video>
+					</div>
+					<br>
+					<div align="center" class="embed-responsive embed-responsive-16by9">
+						<video controls class="embed-responsive-item">
+							<source src="../images/nxtrobot/whitedoorvid.mp4" type=video/mp4>
+						</video>
+					</div>
+					<br>
+					<div align="center" class="embed-responsive embed-responsive-16by9">
+						<video controls class="embed-responsive-item">
+							<source src="../images/nxtrobot/nxt_robot_battle.mp4" type=video/mp4>
+						</video>
+					</div>
 					
 				</div>
 			</core-header-panel>
