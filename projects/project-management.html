@@ -10,18 +10,29 @@
 		<link rel="import" href="../bower_components/core-icons/core-icons.html">
 		<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 		<link rel="stylesheet" href="../css/base.css" shim-shadowdom="">	
+		<link rel="stylesheet" href="../css/bootstrap.min.css">
 		<link rel="icon" href="../images/favicon.ico">
-    </head>
+		<style>
+			html,body {
+				height: 100%;
+				margin: 0;
+				background-color: #cfd8dc;
+				font-family: 'RobotoDraft', sans-serif;
+			}	
+		</style>
+    </head>	
     <body fullbleed layout vertical>
 			<core-header-panel flex>
 				<core-toolbar>
 					<paper-icon-button id="navicon" icon="arrow-back" onclick="window.history.back();"></paper-icon-button>
 					<span>Management System</span>
 				</core-toolbar>
-				<div class="container">
-					
+				<div class="container">	
+					<img src="../images/pms/MainMenu.png" class="img-responsive" width="1920px" height="1080px"><br>
+					<img src="../images/pms/MonthlyReport.png" class="img-responsive" width="1920px" height="1080px"><br>
+					<img src="../images/pms/Projects.png"  class="img-responsive" width="1920px" height="1080px"><br>
+					<img src="../images/pms/Timesheet.png" class="img-responsive" width="1920px" height="1080px">
 				</div>
 			</core-header-panel>
-			
     </body>
 </html>
