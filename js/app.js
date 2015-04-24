@@ -1,4 +1,4 @@
-var pages = document.querySelector('core-pages');
+/*var pages = document.querySelector('core-pages');
 var tabs = document.querySelector('paper-tabs');
 tabs.addEventListener('core-select', function() {
 	pages.selected = tabs.selected;
@@ -16,4 +16,4 @@ panel.onscroll = function(event) {
 
 tabs.addEventListener('core-activate', function(event) {
   scrollable.scrollTop = (event.detail.item.pos || 0);
-});
+});*/
