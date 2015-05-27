@@ -23,6 +23,9 @@
 			#whitedoor{
 				margin: auto;
 			}
+			.summary {
+				text-align: left;
+			}
 		</style>
     </head>
     <body fullbleed layout vertical>
@@ -32,62 +35,70 @@
 				<span>NXT Robot</span>
 			</core-toolbar>
 			<div class="container">
-				<p> &emsp;Immediately after the final exams, the semester was not over yet. There was a 5 week projects course that took place.
-					The projects course was a introduction to how projects are planned and focused primarily on project management skills.
-					Each team consisted of 4-5 members and the project was to build and program a Lego Mindstorms NXT robot to perform various tasks in different challenges.
-				</p>
-				<br>
-				<p>	&emsp;To make this project course more difficult, there were limited access to resources. The challenge tables were only available during open lab times
-					and each lab time had 5 different teams so we had to share the tables. Also the number of Lego pieces to construct the robot was restricting making it more
-					difficult to have the specific pieces needed. 
-				</p>
-				<br>
-				<p> &emsp;There were 3 challenges in total each with a specific goal and a different build of the robot. The robot had to be slightly adjusted for each 
-					situation. We were the first team to complete all 3 challenges by planning our strategies carefully. 
-					<ol>
-						<li>
-							The first challenge was simple, a maze. The robot was to travel through a maze and reach past the end line. The robot has attached a
-							ultra sonic sensor allowing it to determine a specific distance before turning left or right. 
-							<br><br>
-							The First Challenge
-							<div align="center" class="embed-responsive embed-responsive-16by9">
-								<iframe width="420" height="315" src="https://www.youtube.com/embed/FHjvfDHaD60" frameborder="0" allowfullscreen></iframe>
-							</div>
-						</li>
-						<br>
-						<li>
-							The second challenge was a little bit more complicated which required more programming. The robot was placed on a random location in a room. The room has a black wall and 7 white doors where only one random door would be unlocked. The robot was programmed to scan all white doors in the room and push through. The robot travels along the black wall until it hits a colour change on the wall. Then it turns rights to face the door and attempts to open. If the door would not open then it will turn left and travel along the wall until another wall colour change occurs. The robot has 
-							attached an ultra sonic sensor to detect the closest wall and a light sensor to detect colour change between the walls.
-							<br><br>
-							A picture of how the room looks like
-							<img src="../images/nxtrobot/whitedoor.jpg" id="whitedoor" class="img-responsive"><br>
-							The Second Challenge
-							<div align="center" class="embed-responsive embed-responsive-16by9">
-								<iframe width="420" height="315" src="https://www.youtube.com/embed/1GQyN633-qs" frameborder="0" allowfullscreen></iframe>
-							</div>
-						</li>
-						<br>
-						<li>
-							The third challenge was a battle between our robot and 2 deadly fully customized robots. The 2 fully customized robots were built by
-							2 different instructors. The customized robots has unlimited resources as compared to our robot which has limited resources. In this challenge we had to battle and win 2 out of 3 rounds in a circular platform. Using a multi threaded algorithm we were able to complete this challenge.
-							<br><br>
-							Demonstration of the seek and destroy algorithm
-							<div align="center" class="embed-responsive embed-responsive-16by9">
-								<iframe width="420" height="315" src="https://www.youtube.com/embed/jgcojoXMDjo" frameborder="0" allowfullscreen></iframe>
-							</div>
+				<div class="summary">
+					<p>
+						Immediately after the final exams, the semester was not over yet. There was a 5 week projects course that took place.
+						The projects course was an introduction to project management.The project was to build and program a Lego Mindstorms NXT robot to perform various tasks in different challenges. The robot was programmed in Java using the Lejos API.
+					</p>
+					<br>
+					<p>
+						To make this project course more difficult, there were limited access to resources. The challenge tables were only available during open lab times
+						and each lab time had 5 different teams so we had to share the tables. Also the number of Lego pieces to construct the robot was restricting making it more
+						difficult to have the specific pieces needed. 
+					</p>
+					<br>
+					<p>
+						There were 3 challenges in total each with a specific goal and a different build of the robot. The robot had to be slightly adjusted for each 
+						situation. We were the first team to complete all 3 challenges by planning our strategies carefully. 
+						<ol>
+							<li>
+								<p>
+									The first challenge was simple, a maze. The robot was to travel through a maze and reach past the end line. The robot has attached a
+									ultra sonic sensor allowing it to determine a specific distance before turning left or right. 
+								</p>
+								<br>
+								<p style="text-align: center;">The First Challenge</p>
+								<div align="center" class="embed-responsive embed-responsive-16by9">
+									<iframe width="420" height="315" src="https://www.youtube.com/embed/FHjvfDHaD60" frameborder="0" allowfullscreen></iframe>
+								</div>
+							</li>
 							<br>
-							Demonstration of the platform algorithm
-							<div align="center" class="embed-responsive embed-responsive-16by9">
-								<iframe width="420" height="315" src="https://www.youtube.com/embed/bJMh5hCjA5w" frameborder="0" allowfullscreen></iframe>
-							</div>
+							<li>
+								<p>
+									The second challenge was a little bit more complicated which required more programming. The robot was placed on a random location in a room. The room has a black wall and 7 white doors where only one random door would be unlocked. The robot was programmed to scan all white doors in the room and push through. The robot travels along the black wall until it hits a colour change on the wall. Then it turns rights to face the door and attempts to open. If the door would not open then it will turn left and travel along the wall until another wall colour change occurs. The robot has attached an ultra sonic sensor to detect the closest wall and a light sensor to detect colour change between the walls.
+								</p>
+								<br>
+								<p style="text-align: center;">A picture of how the room looks like</p>
+								<img src="../images/nxtrobot/whitedoor.jpg" id="whitedoor" class="img-responsive"><br>
+								<p style="text-align: center;">The Second Challenge</p>
+								<div align="center" class="embed-responsive embed-responsive-16by9">
+									<iframe width="420" height="315" src="https://www.youtube.com/embed/1GQyN633-qs" frameborder="0" allowfullscreen></iframe>
+								</div>
+							</li>
 							<br>
-							The Final Challenge
-							<div align="center" class="embed-responsive embed-responsive-16by9">
-								<iframe width="420" height="315" src="https://www.youtube.com/embed/LL1P7EWWYGg" frameborder="0" allowfullscreen></iframe>
-							</div>
-						</li>
-					</ol>
-				</p>
+							<li>
+								<p>
+									The third challenge was a battle between our robot and 2 deadly fully customized robots. The 2 fully customized robots were built by 2 different instructors. The customized robots has unlimited resources as compared to our robot which has limited resources. In this challenge we had to battle and win 2 out of 3 rounds in a circular platform. Using a multi threaded algorithm we were able to complete this challenge.
+								</p>
+								<br>
+								<p style="text-align: center;">Demonstration of the seek and destroy algorithm</p>
+								<div align="center" class="embed-responsive embed-responsive-16by9">
+									<iframe width="420" height="315" src="https://www.youtube.com/embed/jgcojoXMDjo" frameborder="0" allowfullscreen></iframe>
+								</div>
+								<br>
+								<p style="text-align: center;">Demonstration of the platform algorithm</p>
+								<div align="center" class="embed-responsive embed-responsive-16by9">
+									<iframe width="420" height="315" src="https://www.youtube.com/embed/bJMh5hCjA5w" frameborder="0" allowfullscreen></iframe>
+								</div>
+								<br>
+								<p style="text-align: center;">The Final Challenge</p>
+								<div align="center" class="embed-responsive embed-responsive-16by9">
+									<iframe width="420" height="315" src="https://www.youtube.com/embed/LL1P7EWWYGg" frameborder="0" allowfullscreen></iframe>
+								</div>
+							</li>
+						</ol>
+					</p>
+				</div>
 			</div>
 		</core-header-panel>
     </body>

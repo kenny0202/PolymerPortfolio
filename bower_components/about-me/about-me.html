@@ -1,4 +1,6 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
+<link rel="import" href="../chart-elements/chart-elements.html">
+<link rel="import" href="../core-media-query/core-media-query.html">
 <polymer-element name="about-me">
 	<template>
 		<style>
@@ -6,23 +8,60 @@
 				margin:auto;
 				max-width: 70%;
 				font-family: 'Roboto', sans-serif;
+				text-align: left;
 			}
 		</style>
 
-			<div id="contactinfo">
-				<p>
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent 	dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, 	accumsan porttitor, facilisis luctus, metus
-				</p>
-
-				<p>
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent 	dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, 	accumsan porttitor, facilisis luctus, metus
-				</p>
-
-				<p>
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent 	dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, 	accumsan porttitor, facilisis luctus, metus
-				</p>
-				
+		<div id="contactinfo">
+			<p>
+				Hi! I'm Kenny! Thanks for checking out my portfolio. I'm a developer based in British Columbia, Canada. 
+			</p>
+			<p>
+				I have created this portfolio to share the projects that I have been working on when I began to learn about software development. 
+			</p>
+			
+			<core-media-query query="max-width:640px" queryMatches="{{phoneScreen}}"></core-media-query>
+				<div layout vertical?="{{phoneScreen}}" horizontal?={{!phoneScreen}}">
+					<div auto-vertical flex>
+						<p>
+							<chart-bar
+								width="250"
+								height="200"
+								labels="['C','C++','C#','Java','SQL']",
+								values="[ [70,75,80,80,90] ]"
+								colors="['33,150,243']">
+							</chart-bar>
+							<br>
+							Programming Languages
+						</p>
+					</div>
+					<div auto-vertical flex>
+						<p>
+							<chart-bar
+								width="250"
+								height="200"
+								labels="['HTML','CSS','JS','PHP']",
+								values="[ [80,65,65,70] ]"
+								colors="['244,67,54']">
+							</chart-bar>
+							<br>
+							Web Languages
+						</p>
+					</div>
+					<div auto-vertical flex>
+						<p>
+							<chart-polar-area
+								width="250"
+								height="200"
+								values="[75, 100, 80, 70]">
+							</chart-polar-area>
+							<br>
+							Development Frameworks
+						</p>
+					</div>
+				</div>
 			</div>
+		</div>
 	</template>
 	<script>
 		Polymer();

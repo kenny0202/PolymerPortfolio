@@ -580,268 +580,146 @@ html /deep/ core-icon {
 
 
 
-		
-
-
-<style shim-shadowdom="">
-  /* FIXME consider theming */
-
-  html /deep/ input[is=core-input] {
-    width: 20em;
-    font: inherit;
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    border: 0;
-    outline: none;
-  }
-</style>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
-		
-
-
-		
-
-
-<style shim-shadowdom="">/*
- * @license
- * Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
- */
-
-html /deep/ paper-shadow,
-html /deep/ paper-animated-shadow {
-  display: block;
-  position: relative;
-}
-
-html /deep/ paper-shadow::shadow #shadow-bottom,
-html /deep/ paper-shadow::shadow #shadow-top {
-  border-radius: inherit;
-  pointer-events: none;
-}
-
-html /deep/ paper-shadow::shadow #shadow-bottom[animated],
-html /deep/ paper-shadow::shadow #shadow-top[animated] {
-  transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-html /deep/ .paper-shadow-top-z-1 {
-  box-shadow: none;
-}
-
-html /deep/ .paper-shadow-bottom-z-1 {
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.37);
-}
-
-html /deep/ .paper-shadow-top-z-2 {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-html /deep/ .paper-shadow-bottom-z-2 {
-  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3);
-}
-
-html /deep/ .paper-shadow-top-z-3 {
-  box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19);
-}
-
-html /deep/ .paper-shadow-bottom-z-3 {
-  box-shadow: 0 13px 25px 0 rgba(0, 0, 0, 0.3);
-}
-
-html /deep/ .paper-shadow-top-z-4 {
-  box-shadow: 0 14px 12px 0 rgba(0, 0, 0, 0.17);
-}
-
-html /deep/ .paper-shadow-bottom-z-4 {
-  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.3);
-}
-
-html /deep/ .paper-shadow-top-z-5 {
-  box-shadow: 0 17px 17px 0 rgba(0, 0, 0, 0.15);
-}
-
-html /deep/ .paper-shadow-bottom-z-5 {
-  box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3);
-}</style>
-
-
-
-
-<style shim-shadowdom="">
-  html /deep/ core-a11y-keys {
-    display: none;
-  }
-</style>
-
-
-
-
-
-
-		
-
-
-
-
-
-
-<!--
-@element core-key-helper
--->
-
-
-
-<!--
-@element core-overlay-layer
--->
-
-
-<!--
-The `core-overlay` element displays overlayed on top of other content. It starts
-out hidden and is displayed by setting its `opened` property to true.
-A `core-overlay's` opened state can be toggled by calling the `toggle`
-method.
-
-The `core-overlay` will, by default, show/hide itself when it's opened. The 
-`target` property may be set to another element to cause that element to 
-be shown when the overlay is opened.
-
-It's common to want a `core-overlay` to animate to its opened
-position. The `core-overlay` element uses a `core-transition` to handle
-animation. The default transition is `core-transition-fade` which 
-causes the overlay to fade in when displayed. See 
-<a href="../core-transition/">`core-transition`</a> for more
-information about customizing a `core-overlay's` opening animation. The
-`backdrop` property can be set to true to show a backdrop behind the overlay
-that will darken the rest of the window.
-
-An element that should close the `core-overlay` will automatically
-do so if it's given the `core-overlay-toggle` attribute. This attribute
-can be customized with the `closeAttribute` property. You can also use
-`closeSelector` if more general matching is needed.
-
-By default  `core-overlay` will close whenever the user taps outside it or
-presses the escape key. This behavior can be turned off via the
-`autoCloseDisabled` property.
-
-    <core-overlay>
-      <h2>Dialog</h2>
-      <input placeholder="say something..." autofocus>
-      <div>I agree with this wholeheartedly.</div>
-      <button core-overlay-toggle>OK</button>
-    </core-overlay>
-
-`core-overlay` will automatically size and position itself according to the 
-following rules. The overlay's size is constrained such that it does not
-overflow the screen. This is done by setting maxHeight/maxWidth on the 
-`sizingTarget`. If the `sizingTarget` already has a setting for one of these
-properties, it will not be overridden. The overlay should
-be positioned via css or imperatively using the `core-overlay-position` event.
-If the overlay is not positioned vertically via setting `top` or `bottom`, it
-will be centered vertically. The same is true horizontally via a setting to 
-`left` or `right`. In addition, css `margin` can be used to provide some space
-around the overlay. This can be used to ensure
-that, for example, a drop shadow is always visible around the overlay.
-
-@group Core Elements
-@element core-overlay
-@mixins Polymer.CoreResizer https://github.com/polymer/core-resizable
-@homepage github.io
--->
-<!--
-Fired when the `core-overlay`'s `opened` property changes.
-
-@event core-overlay-open
-@param {Object} detail
-@param {Object} detail.opened the opened state
--->
-<!--
-Fired when the `core-overlay` has completely opened.
-
-@event core-overlay-open-completed
--->
-<!--
-Fired when the `core-overlay` has completely closed.
-
-@event core-overlay-close-completed
--->
-<!--
-Fired when the `core-overlay` needs to position itself. Optionally, implement
-in order to position an overlay via code. If the overlay was not otherwise
-positioned, it's important to indicate how the overlay has been positioned by
-setting the `dimensions.position` object. For example, if the overlay has been
-positioned via setting `right` and `top`, set dimensions.position to an
-object like this: `{v: 'top', h: 'right'}`.
-
-@event core-overlay-position
-@param {Object} detail
-@param {Object} detail.target the overlay target
-@param {Object} detail.sizingTarget the overlay sizing target
-@param {Object} detail.opened the opened state
--->
-<style>
-  .core-overlay-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: black;
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .core-overlay-backdrop.core-opened {
-    opacity: 0.6;
-  }
-</style>
-
-
-
-
-
-
-
-
-
-
-		
-
-
-
-
-
-
-
-
-
-
-
 		<link href="http://fonts.googleapis.com/css?family=Roboto:500" rel="stylesheet" type="text/css">
+
+<script src="bower_components/chartjs/Chart.js"></script>
+
+
+<!--
+A bar chart is a way of showing data as bars.
+
+It is sometimes used to show trend data, and the comparison of multiple data sets side by side.
+
+##### Example
+
+    <chart-bar width="400" height="200"
+               labels="['Jan','Feb','Mar','Apr','May','Jun','Jul']",
+               values="[[65,59,90,81,56,55,40], [28,48,40,19,96,27,100]]"
+               colors="['253,180,92','247,70,74','70,191,189','148,159,177','77,83,96']">
+    </chart-bar>
+
+@element chart-bar
+@blurb A bar chart is a way of showing data as bars.
+@status alpha
+@homepage http://robdodson.github.io/chart-elements
+-->
+
+
+
+
+<!--
+Pie and doughnut charts are probably the most commonly used chart there are. They are divided into segments, the arc of each segment shows a the proportional value of each piece of data.
+
+They are excellent at showing the relational proportions between data.
+
+Pie and doughnut charts in are effectively the same class in Chart.js, but have one different default value - their percentageInnerCutout. This equates what percentage of the inner should be cut out. This defaults to 0 for pie charts, and 50 for doughnuts.
+
+They are also registered under two aliases in the Chart core. Other than their different default value, and different alias, they are exactly the same.
+
+##### Example
+
+    <chart-doughnut values="[30, 50, 100, 40, 120]"></chart-doughnut>
+
+@element chart-doughnut
+@blurb A chart for showing the relational proportions between data.
+@status alpha
+@homepage http://robdodson.github.io/chart-elements
+-->
+
+
+
+
+<!--
+A line chart is a way of plotting data points on a line.
+
+Often, it is used to show trend data, and the comparison of two data sets.
+
+##### Example
+
+    <chart-line width="400" height="200"
+                labels="['Monday','Tuesday','Wednesday','thursday','Friday','Saturday','Sunday']"
+                values="[[10,14,20,25,13,9,40]]"
+                colors="['253,180,92','247,70,74','70,191,189','148,159,177','77,83,96']">
+    </chart-line>
+
+@element chart-line
+@blurb A line chart is a way of plotting data points on a line.
+@status alpha
+@homepage http://robdodson.github.io/chart-elements
+-->
+
+
+
+
+
+<!--
+Pie and doughnut charts are probably the most commonly used chart there are. They are divided into segments, the arc of each segment shows a the proportional value of each piece of data.
+
+They are excellent at showing the relational proportions between data.
+
+Pie and doughnut charts in are effectively the same class in Chart.js, but have one different default value - their percentageInnerCutout. This equates what percentage of the inner should be cut out. This defaults to 0 for pie charts, and 50 for doughnuts.
+
+They are also registered under two aliases in the Chart core. Other than their different default value, and different alias, they are exactly the same.
+
+##### Example
+
+    <chart-pie values="[20, 30, 100]"></chart-pie>
+
+@element chart-pie
+@blurb A chart for showing the relational proportions between data.
+@status alpha
+@homepage http://robdodson.github.io/chart-elements
+-->
+
+
+
+
+<!--
+Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.
+
+This type of chart is often useful when we want to show a comparison data similar to a pie chart, but also show a scale of values for context.
+
+##### Example
+
+    <chart-polar-area values="[30, 90, 18, 58, 82]"></chart-polar-area>
+
+@element chart-polar-area
+@blurb Polar area charts are similar to pie charts, but each segment has the same angle - the radius of the segment differs depending on the value.
+@status alpha
+@homepage http://robdodson.github.io/chart-elements
+-->
+
+
+
+
+<!--
+A radar chart is a way of showing multiple data points and the variation between them.
+
+They are often useful for comparing the points of two or more different data sets.
+
+##### Example
+
+    <chart-radar labels="['Jan','Feb','Mar','Apr','May','Jun','Jul']"
+                 values="[[65,59,90,81,56,55,40], [28,48,40,19,96,27,100]]",
+                 colors= "['253,180,92','247,70,74','70,191,189','148,159,177','77,83,96']">
+    </chart-radar>
+
+@element chart-radar
+@blurb A radar chart is a way of showing multiple data points and the variation between them.
+@status alpha
+@homepage http://robdodson.github.io/chart-elements
+-->
+
+
+
+
+
  
 		
 
 		
+
+
 
 
 
@@ -3586,1596 +3464,459 @@ polyfill-next-selector { content: '#tabsContent > *:not(#selectionBar)'; }
 </script>
 </polymer-element>
 
-<polymer-element name="core-input" extends="input" assetpath="bower_components/core-input/">
-
-<script>
-
-  Polymer('core-input', {
-
-    publish: {
-
-      /**
-       * The "committed" value of the input, ie. the input value when the user
-       * hits the "enter" key or blurs the input after changing the value. You
-       * can bind to this value instead of listening for the "change" event.
-       * Setting this property has no effect on the input value.
-       *
-       * @attribute committedValue
-       * @type string
-       * @default ''
-       */
-      committedValue: '',
-
-      /**
-       * Set to true to prevent invalid input from being entered.
-       *
-       * @attribute preventInvalidInput
-       * @type boolean
-       * @default false
-       */
-      preventInvalidInput: false
-
-    },
-
-    previousValidInput: '',
-
-    eventDelegates: {
-      input: 'inputAction',
-      change: 'changeAction'
-    },
-
-    ready: function() {
-      /* set ARIA attributes */
-      this.disabledHandler();
-      this.placeholderHandler();
-    },
-
-    attributeChanged: function(attr, old) {
-      if (this[attr + 'Handler']) {
-        this[attr + 'Handler'](old);
-      }
-    },
-
-    disabledHandler: function() {
-      if (this.disabled) {
-        this.setAttribute('aria-disabled', '');
-      } else {
-        this.removeAttribute('aria-disabled');
-      }
-    },
-
-    placeholderHandler: function() {
-      if (this.placeholder) {
-        this.setAttribute('aria-label', this.placeholder);
-      } else {
-        this.removeAttribute('aria-label');
-      }
-    },
-
-    /**
-     * Commits the `value` to `committedValue`
-     *
-     * @method commit
-     */
-    commit: function() {
-      this.committedValue = this.value;
-    },
-
-    changeAction: function() {
-      this.commit();
-    },
-
-    inputAction: function(e) {
-      if (this.preventInvalidInput) {
-        if (!e.target.validity.valid) {
-          e.target.value = this.previousValidInput;
-        } else {
-          this.previousValidInput = e.target.value;
-        }
-      }
-    }
-
-  });
-
-</script>
-
-</polymer-element>
-
-<polymer-element name="core-style" hidden="" assetpath="bower_components/core-style/">
-<script>
-(function() {
-
-window.CoreStyle = window.CoreStyle || {
-  g: {},
-  list: {},
-  refMap: {}
-};
-
-Polymer('core-style', {
-  /**
-   * The `id` property should be set if the `core-style` is a producer
-   * of styles. In this case, the `core-style` should have text content
-   * that is cssText.
-   *
-   * @attribute id
-   * @type string
-   * @default ''
-   */
-
-
-  publish: {
-    /**
-     * The `ref` property should be set if the `core-style` element is a 
-     * consumer of styles. Set it to the `id` of the desired `core-style`
-     * element.
-     *
-     * @attribute ref
-     * @type string
-     * @default ''
-     */
-    ref: ''
-  },
-
-  // static
-  g: CoreStyle.g,
-  refMap: CoreStyle.refMap,
-
-  /**
-   * The `list` is a map of all `core-style` producers stored by `id`. It 
-   * should be considered readonly. It's useful for nesting one `core-style`
-   * inside another.
-   *
-   * @attribute list
-   * @type object
-   * @default {map of all `core-style` producers}
-   */
-  list: CoreStyle.list,
-
-  // if we have an id, we provide style
-  // if we have a ref, we consume/require style
-  ready: function() {
-    if (this.id) {
-      this.provide();
-    } else {
-      this.registerRef(this.ref);
-      if (!window.ShadowDOMPolyfill) {
-        this.require();
-      }  
-    }
-  },
-
-  // can't shim until attached if using SD polyfill because need to find host
-  attached: function() {
-    if (!this.id && window.ShadowDOMPolyfill) {
-      this.require();
-    }
-  },
-
-  /****** producer stuff *******/
-
-  provide: function() {
-    this.register();
-    // we want to do this asap, especially so we can do so before definitions
-    // that use this core-style are registered.
-    if (this.textContent) {
-      this._completeProvide();
-    } else {
-      this.async(this._completeProvide);
-    }
-  },
-
-  register: function() {
-    var i = this.list[this.id];
-    if (i) {
-      if (!Array.isArray(i)) {
-        this.list[this.id] = [i];
-      }
-      this.list[this.id].push(this);
-    } else {
-      this.list[this.id] = this;  
-    }
-  },
-
-  // stamp into a shadowRoot so we can monitor dom of the bound output
-  _completeProvide: function() {
-    this.createShadowRoot();
-    this.domObserver = new MutationObserver(this.domModified.bind(this))
-        .observe(this.shadowRoot, {subtree: true, 
-        characterData: true, childList: true});
-    this.provideContent();
-  },
-
-  provideContent: function() {
-    this.ensureTemplate();
-    this.shadowRoot.textContent = '';
-    this.shadowRoot.appendChild(this.instanceTemplate(this.template));
-    this.cssText = this.shadowRoot.textContent;
-  },
-
-  ensureTemplate: function() {
-    if (!this.template) {
-      this.template = this.querySelector('template:not([repeat]):not([bind])');
-      // move content into the template
-      if (!this.template) {
-        this.template = document.createElement('template');
-        var n = this.firstChild;
-        while (n) {
-          this.template.content.appendChild(n.cloneNode(true));
-          n = n.nextSibling;
-        }
-      }
-    }
-  },
-
-  domModified: function() {
-    this.cssText = this.shadowRoot.textContent;
-    this.notify();
-  },
-
-  // notify instances that reference this element
-  notify: function() {
-    var s$ = this.refMap[this.id];
-    if (s$) {
-      for (var i=0, s; (s=s$[i]); i++) {
-        s.require();
-      }
-    }
-  },
-
-  /****** consumer stuff *******/
-
-  registerRef: function(ref) {
-    //console.log('register', ref);
-    this.refMap[this.ref] = this.refMap[this.ref] || [];
-    this.refMap[this.ref].push(this);
-  },
-
-  applyRef: function(ref) {
-    this.ref = ref;
-    this.registerRef(this.ref);
-    this.require();
-  },
-
-  require: function() {
-    var cssText = this.cssTextForRef(this.ref);
-    //console.log('require', this.ref, cssText);
-    if (cssText) {
-      this.ensureStyleElement();
-      // do nothing if cssText has not changed
-      if (this.styleElement._cssText === cssText) {
-        return;
-      }
-      this.styleElement._cssText = cssText;
-      if (window.ShadowDOMPolyfill) {
-        this.styleElement.textContent = cssText;
-        cssText = WebComponents.ShadowCSS.shimStyle(this.styleElement,
-            this.getScopeSelector());
-      }
-      this.styleElement.textContent = cssText;
-    }
-  },
-
-  cssTextForRef: function(ref) {
-    var s$ = this.byId(ref);
-    var cssText = '';
-    if (s$) {
-      if (Array.isArray(s$)) {
-        var p = [];
-        for (var i=0, l=s$.length, s; (i<l) && (s=s$[i]); i++) {
-          p.push(s.cssText);
-        }
-        cssText = p.join('\n\n');
-      } else {
-        cssText = s$.cssText;
-      }
-    }
-    if (s$ && !cssText) {
-      console.warn('No styles provided for ref:', ref);
-    }
-    return cssText;
-  },
-
-  byId: function(id) {
-    return this.list[id];
-  },
-
-  ensureStyleElement: function() {
-    if (!this.styleElement) {
-      this.styleElement = window.ShadowDOMPolyfill ? 
-          this.makeShimStyle() :
-          this.makeRootStyle();
-    }
-    if (!this.styleElement) {
-      console.warn(this.localName, 'could not setup style.');
-    }
-  },
-
-  makeRootStyle: function() {
-    var style = document.createElement('style');
-    this.appendChild(style);
-    return style;
-  },
-
-  makeShimStyle: function() {
-    var host = this.findHost(this);
-    if (host) {
-      var name = host.localName;
-      var style = document.querySelector('style[' + name + '=' + this.ref +']');
-      if (!style) {
-        style = document.createElement('style');
-        style.setAttribute(name, this.ref);
-        document.head.appendChild(style);
-      }
-      return style;
-    }
-  },
-
-  getScopeSelector: function() {
-    if (!this._scopeSelector) {
-      var selector = '', host = this.findHost(this);
-      if (host) {
-        var typeExtension = host.hasAttribute('is');
-        var name = typeExtension ? host.getAttribute('is') : host.localName;
-        selector = WebComponents.ShadowCSS.makeScopeSelector(name, 
-            typeExtension);
-      }
-      this._scopeSelector = selector;
-    }
-    return this._scopeSelector;
-  },
-
-  findHost: function(node) {
-    while (node.parentNode) {
-      node = node.parentNode;
-    }
-    return node.host || wrap(document.documentElement);
-  },
-
-  /* filters! */
-  // TODO(dfreedm): add more filters!
-
-  cycle: function(rgb, amount) {
-    if (rgb.match('#')) {
-      var o = this.hexToRgb(rgb);
-      if (!o) {
-        return rgb;
-      }
-      rgb = 'rgb(' + o.r + ',' + o.b + ',' + o.g + ')';
-    }
-
-    function cycleChannel(v) {
-      return Math.abs((Number(v) - amount) % 255);
-    }
-
-    return rgb.replace(/rgb\(([^,]*),([^,]*),([^,]*)\)/, function(m, a, b, c) {
-      return 'rgb(' + cycleChannel(a) + ',' + cycleChannel(b) + ', ' 
-          + cycleChannel(c) + ')';
-    });
-  },
-
-  hexToRgb: function(hex) {
-    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(result[1], 16),
-        g: parseInt(result[2], 16),
-        b: parseInt(result[3], 16)
-    } : null;
-  }
-
-});
-
-
-})();
-</script>
-</polymer-element>
-<core-style id="paper-input-decorator">
-
-.label-text,
-.error {
-  color: {{g.paperInput.labelColor}};
-}
-
-::-webkit-input-placeholder {
-  color: {{g.paperInput.labelColor}};
-}
-
-::-moz-placeholder {
-  color: {{g.paperInput.labelColor}};
-}
-
-:-ms-input-placeholder {
-  color: {{g.paperInput.labelColor}};
-}
-
-.unfocused-underline {
-  background-color: {{g.paperInput.labelColor}};
-}
-
-:host([focused]) .floated-label .label-text {
-  color: {{g.paperInput.focusedColor}};
-}
-
-.focused-underline {
-  background-color: {{g.paperInput.focusedColor}};
-}
-
-:host(.invalid) .floated-label .label-text,
-.error {
-  color: {{g.paperInput.invalidColor}};
-}
-
-:host(.invalid) .unfocused-underline,
-:host(.invalid) .focused-underline {
-  background-color: {{g.paperInput.invalidColor}};
-}
-
-</core-style>
-
-<polymer-element name="paper-input-decorator" layout="" vertical="" on-transitionend="{{transitionEndAction}}" on-webkittransitionend="{{transitionEndAction}}" on-input="{{inputAction}}" on-down="{{downAction}}" on-tap="{{tapAction}}" on-char-counter-error="{{charCounterErrorAction}}" assetpath="bower_components/paper-input/">
-
+<polymer-element name="chart-bar" attributes="width height labels values colors options" assetpath="bower_components/chart-elements/">
   <template>
-
-    <style>/*
- * @license
- * Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
- * This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
- * The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
- * The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
- * Code distributed by Google as part of the polymer project is also
- * subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
- */
-
-:host {
-  display: inline-block;
-  outline: none;
-  text-align: inherit;
-  padding: 0.75em 0;
-}
-
-polyfill-next-selector {
-  content: '.input-body > :not(.label)';
-}
-::content > *,
-::content > input[is="core-input"] {
-  padding: 0;
-  margin: 0.5em 0 0.25em;
-  width: 100%;
-}
-
-polyfill-next-selector {
-  content: 'input, textarea';
-}
-::content input,
-::content input[is=core-input],
-::content textarea {
-  font: inherit;
-  color: inherit;
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-
-polyfill-next-selector {
-  content: ':invalid';
-}
-::content input:invalid,
-::content textarea:invalid {
-  box-shadow: none;
-}
-
-polyfill-next-selector {
-  content: 'textarea';
-}
-::content textarea {
-  resize: none;
-}
-
-[invisible] {
-  visibility: hidden;
-}
-
-[animated] {
-  visibility: visible !important;
-  -webkit-transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.floated-label {
-  font-size: 0.75em;
-  background: transparent;
-  white-space: nowrap;
-}
-
-.mirror-text {
-  padding: 0.5em 0 0.25em;
-  max-width: 100%;
-  white-space: nowrap;
-}
-
-:host([multiline]) .mirror-text {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
-
-.label {
-  padding: 0.5em 0 0.25em;
-  background: transparent;
-  pointer-events: none;
-}
-
-.label-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  display: inline-block;
-  max-width: 100%;
-  -moz-transform-origin: 0% 0%;
-  -webkit-transform-origin: 0% 0%;
-  transform-origin: 0% 0%;
-}
-
-.underline {
-  height: 0px;
-  overflow: visible;
-}
-
-:host([disabled]) .underline {
-  border-bottom: 1px dashed #757575;
-}
-
-.unfocused-underline {
-  height: 1px;
-}
-
-.focused-underline {
-  height: 2px;
-  -webkit-transform: none;
-  transform: none;
-}
-
-.focused-underline[invisible] {
-  -webkit-transform: scale3d(0,1,1);
-  transform: scale3d(0,1,1);
-}
-
-.error-text {
-  font-size: 0.75em;
-  padding: 0.5em 0;
-}
-
-.error-icon {
-  height: 20px;
-  width: 20px;
-}
-</style>
-    <core-style ref="paper-input-decorator"></core-style>
-
-    <div class="floated-label" aria-hidden="true" hidden?="{{!floatingLabel}}" invisible?="{{!floatingLabelVisible || labelAnimated}}">
-      <!-- needed for floating label animation measurement -->
-      <span id="floatedLabelText" class="label-text">{{label}}</span>
-    </div>
-
-    <div class="input-body" flex="" auto="" relative="">
-
-      <div class="label" fit="" invisible="" aria-hidden="true">
-        <!-- needed for floating label animation measurement -->
-        <span id="labelText" class="label-text" invisible?="{{!_labelVisible}}" animated?="{{labelAnimated}}">{{label}}</span>
-      </div>
-
-      <content select="*:not(.counter)"></content>
-
-    </div>
-
-    <div id="underline" class="underline" relative="">
-      <div class="unfocused-underline" fit="" invisible?="{{disabled}}"></div>
-      <div id="focusedUnderline" class="focused-underline" fit="" invisible?="{{!underlineVisible}}" animated?="{{underlineAnimated}}"></div>
-    </div>
-
-    <div class="footer" layout="" horizontal="" end-justified="">
-      <div class="error" flex="" layout="" horizontal="" center="" hidden?="{{!isInvalid}}">
-        <div class="error-text" flex="" auto="" role="alert" aria-hidden="{{!isInvalid}}">{{error}}</div>
-        <core-icon id="errorIcon" class="error-icon" icon="warning"></core-icon>
-      </div>
-      <div aria-hidden="true">
-        <content select=".counter"></content>
-      </div>
-    </div>
-
+    <canvas id="canvas" width="{{width}}" height="{{height}}"></canvas>
   </template>
-
   <script>
-
-  (function() {
-
-    var paperInput = CoreStyle.g.paperInput = CoreStyle.g.paperInput || {};
-
-    paperInput.labelColor = '#757575';
-    paperInput.focusedColor = '#4059a9';
-    paperInput.invalidColor = '#d34336';
-
-    Polymer('paper-input-decorator',{
-
-      publish: {
-
-        /**
-         * The label for this input. It normally appears as grey text inside
-         * the text input and disappears once the user enters text.
-         *
-         * @attribute label
-         * @type string
-         * @default ''
-         */
-        label: '',
-
-        /**
-         * If true, the label will "float" above the text input once the
-         * user enters text instead of disappearing.
-         *
-         * @attribute floatingLabel
-         * @type boolean
-         * @default false
-         */
-        floatingLabel: false,
-
-        /**
-         * Set to true to style the element as disabled.
-         *
-         * @attribute disabled
-         * @type boolean
-         * @default false
-         */
-        disabled: {value: false, reflect: true},
-
-        /**
-         * Use this property to override the automatic label visibility.
-         * If this property is set to `true` or `false`, the label visibility
-         * will respect this value instead of be based on whether there is
-         * a non-null value in the input.
-         *
-         * @attribute labelVisible
-         * @type boolean
-         * @default false
-         */
-        labelVisible: null,
-
-        /**
-         * Set this property to true to show the error message.
-         *
-         * @attribute isInvalid
-         * @type boolean
-         * @default false
-         */
-        isInvalid: false,
-
-        /**
-         * Set this property to true to validate the input as the user types.
-         * This will not validate when changing the input programmatically; call
-         * `validate()` instead.
-         *
-         * @attribute autoValidate
-         * @type boolean
-         * @default false
-         */
-        autoValidate: false,
-
-        /**
-         * The message to display if the input value fails validation. If this
-         * is unset or the empty string, a default message is displayed depending
-         * on the type of validation error.
-         *
-         * @attribute error
-         * @type string
-         */
-        error: '',
-
-        focused: {value: false, reflect: true}
-
+    Polymer('chart-bar',{
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      values: [
+        [65,59,90,81,56,55,40],
+        [28,48,40,19,96,27,100]
+      ],
+      colors: [
+        "253,180,92",
+        "247,70,74",
+        "70,191,189",
+        "148,159,177",
+        "77,83,96"
+      ],
+      options: {},
+      observe: {
+        width: 'resize',
+        height: 'resize',
+        labels: 'updateChart',
+        colors: 'updateChart',
+        values: 'updateChart',
+        options: 'updateChart'
       },
-
-      computed: {
-        floatingLabelVisible: 'floatingLabel && !_labelVisible',
-        _labelVisible: '(labelVisible === true || labelVisible === false) ? labelVisible : _autoLabelVisible'
-      },
-
-      ready: function() {
-        // Delegate focus/blur events
-        Polymer.addEventListener(this, 'focus', this.focusAction.bind(this), true);
-        Polymer.addEventListener(this, 'blur', this.blurAction.bind(this), true);
-      },
-
-      attached: function() {
-        this.input = this.querySelector('input,textarea');
-
-        this.mo = new MutationObserver(function() {
-          this.input = this.querySelector('input,textarea');
-        }.bind(this));
-        this.mo.observe(this, {childList: true});
-      },
-
-      detached: function() {
-        this.mo.disconnect();
-        this.mo = null;
-      },
-
-      prepareLabelTransform: function() {
-        var toRect = this.$.floatedLabelText.getBoundingClientRect();
-        var fromRect = this.$.labelText.getBoundingClientRect();
-        if (toRect.width !== 0) {
-          var sy = toRect.height / fromRect.height;
-          this.$.labelText.cachedTransform =
-            'scale3d(' + (toRect.width / fromRect.width) + ',' + sy + ',1) ' +
-            'translate3d(0,' + (toRect.top - fromRect.top) / sy + 'px,0)';
+      resize: function() {
+        if (this.chart) {
+          this.updateChart();
         }
       },
-
-      animateFloatingLabel: function() {
-        if (!this.floatingLabel || this.labelAnimated) {
-          return false;
-        }
-
-        if (!this.$.labelText.cachedTransform) {
-          this.prepareLabelTransform();
-        }
-
-        // If there's still no cached transform, the input is invisible so don't
-        // do the animation.
-        if (!this.$.labelText.cachedTransform) {
-          return false;
-        }
-
-        this.labelAnimated = true;
-        // Handle interrupted animation
+      updateChart: function() {
         this.async(function() {
-          this.transitionEndAction();
-        }, null, 250);
-
-        if (this._labelVisible) {
-          // Handle if the label started out floating
-          if (!this.$.labelText.style.webkitTransform && !this.$.labelText.style.transform) {
-            this.$.labelText.style.webkitTransform = this.$.labelText.cachedTransform;
-            this.$.labelText.style.transform = this.$.labelText.cachedTransform;
-            this.$.labelText.offsetTop;
+          if (this.chart) {
+            this.chart.destroy();
+            // Bindings don't seem to be taking effect properly so
+            // manually set width and height
+            this.$.canvas.setAttribute('width', this.width);
+            this.$.canvas.setAttribute('height', this.height);
           }
-          this.$.labelText.style.webkitTransform = '';
-          this.$.labelText.style.transform = '';
-        } else {
-          this.$.labelText.style.webkitTransform = this.$.labelText.cachedTransform;
-          this.$.labelText.style.transform = this.$.labelText.cachedTransform;
-          this.input.placeholder = '';
+
+          this.datasets = [];
+          this.values.forEach(function (val, i) {
+            this.datasets.push({
+              fillColor:    "rgba(" + this.colors[i] + ",0.5)",
+              strokeColor:  "rgba(" + this.colors[i] + ",1)",
+              data: this.values[i]
+            });
+          }, this);
+
+          this.data = { labels: this.labels, datasets: this.datasets };
+
+          this.ctx = this.$.canvas.getContext('2d');
+          this.chart = new Chart(this.ctx).Bar(this.data, this.options);
+        }, null, 0);
+      }
+    });
+  </script>
+</polymer-element>
+
+<polymer-element name="chart-doughnut" attributes="width height values colors options" assetpath="bower_components/chart-elements/">
+  <template>
+    <canvas id="canvas" width="{{width}}" height="{{height}}"></canvas>
+  </template>
+  <script>
+    Polymer('chart-doughnut',{
+      values: [30, 50, 100, 40, 120],
+      colors: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+      options: {},
+      observe: {
+        width: 'resize',
+        height: 'resize',
+        colors: 'updateChart',
+        values: 'updateChart',
+        options: 'updateChart'
+      },
+      resize: function() {
+        if (this.chart) {
+          this.updateChart();
         }
-
-        return true;
       },
-
-      animateUnderline: function(e) {
-        if (this.focused) {
-          var rect = this.$.underline.getBoundingClientRect();
-          var right = e.x - rect.left;
-          this.$.focusedUnderline.style.mozTransformOrigin = right + 'px';
-          this.$.focusedUnderline.style.webkitTransformOrigin = right + 'px ';
-          this.$.focusedUnderline.style.transformOriginX = right + 'px';
-
-          // Animations only run when the user interacts with the input
-          this.underlineAnimated = true;
-        }
-      },
-
-      /**
-       * Validate the input using HTML5 Constraints.
-       *
-       * @method validate
-       * @return {boolean} True if the input is valid.
-       */
-      validate: function() {
-        this.isInvalid = !this.input.validity.valid;
-        return this.input.validity.valid;
-      },
-
-      _labelVisibleChanged: function(old) {
-        // do not do the animation on first render
-        if (old !== undefined) {
-          if (!this.animateFloatingLabel()) {
-            this.updateInputLabel(this.input, this.label);
+      updateChart: function () {
+        this.async(function() {
+          if (this.chart) {
+            this.chart.destroy();
+            // Bindings don't seem to be taking effect properly so
+            // manually set width and height
+            this.$.canvas.setAttribute('width', this.width);
+            this.$.canvas.setAttribute('height', this.height);
           }
-        }
-      },
+          this.data = [];
+          this.values.forEach(function (val, i) {
+            this.data.push({ color: this.colors[i], value: val });
+          }, this);
 
-      labelVisibleChanged: function() {
-        if (this.labelVisible === 'true') {
-          this.labelVisible = true;
-        } else if (this.labelVisible === 'false') {
-          this.labelVisible = false;
-        }
-      },
-
-      labelChanged: function() {
-        if (this.input) {
-          this.updateInputLabel(this.input, this.label);
-        }
-      },
-
-      isInvalidChanged: function() {
-        this.classList.toggle('invalid', this.isInvalid);
-      },
-
-      focusedChanged: function() {
-        this.updateLabelVisibility(this.input && this.input.value);
-        if (this.lastEvent) {
-          this.animateUnderline(this.lastEvent);
-          this.lastEvent = null;
-        }
-        this.underlineVisible = this.focused;
-      },
-
-      inputChanged: function(old) {
-        if (this.input) {
-          this.updateLabelVisibility(this.input.value);
-          this.updateInputLabel(this.input, this.label);
-
-          if (this.autoValidate) {
-            this.validate();
-          }
-        }
-        if (old) {
-          this.updateInputLabel(old, '');
-        }
-      },
-
-      focusAction: function() {
-        this.focused = true;
-      },
-
-      blurAction: function() {
-        this.focused = false;
-      },
-
-      /**
-       * Updates the label visibility based on a value. This is handled automatically
-       * if the user is typing, but if you imperatively set the input value you need
-       * to call this function.
-       *
-       * @method updateLabelVisibility
-       * @param {string} value
-       */
-      updateLabelVisibility: function(value) {
-        var v = (value !== null && value !== undefined) ? String(value) : value;
-        this._autoLabelVisible = (!this.focused && !v) || (!this.floatingLabel && !v);
-      },
-
-      updateInputLabel: function(input, label) {
-        if (this._labelVisible) {
-          this.input.placeholder = this.label;
-        } else {
-          this.input.placeholder = '';
-        }
-        if (label) {
-          input.setAttribute('aria-label', label);
-        } else {
-          input.removeAttribute('aria-label');
-        }
-      },
-
-      inputAction: function() {
-        this.updateLabelVisibility(this.input.value);
-        if (this.autoValidate) {
-          this.validate();
-        }
-      },
-
-      downAction: function(e) {
-        // eat the event and do nothing if already focused
-        if (e.target !== this.input && this.focused) {
-          e.preventDefault();
-          return;
-        }
-        // cache the event here because "down" fires before "focus" when tapping on
-        // the input and the underline animation runs on focus change
-        this.lastEvent = e;
-      },
-
-      tapAction: function(e) {
-        if (this.disabled) {
-          return;
-        }
-
-        if (this.focused) {
-          return;
-        }
-
-        if (this.input) {
-          this.input.focus();
-          e.preventDefault();
-        }
-      },
-
-      transitionEndAction: function() {
-        this.underlineAnimated = false;
-        this.labelAnimated = false;
-        if (this._labelVisible) {
-          this.input.placeholder = this.label;
-        }
-      },
-
-      charCounterErrorAction: function(e) {
-        this.isInvalid = e.detail.hasError;
-
-        // If the allowed characters have been exceeded, show either the error
-        // icon, or the character counter, but not both.
-        this.$.errorIcon.hidden = e.detail.hideErrorIcon;
+          this.ctx = this.$.canvas.getContext('2d');
+          this.chart = new Chart(this.ctx).Doughnut(this.data, this.options);
+        }, null, 0);
       }
 
     });
-
-  }());
-
   </script>
-
 </polymer-element>
-<polymer-element name="paper-input" assetpath="bower_components/paper-input/">
 
-<template>
+<polymer-element name="chart-line" attributes="width height labels values colors options" assetpath="bower_components/chart-elements/">
+  <template>
+    <canvas id="canvas" width="{{width}}" height="{{height}}"></canvas>
+  </template>
+  <script>
+    Polymer('chart-line',{
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      values: [
+        [65,59,90,81,56,55,40],
+        [28,48,40,19,96,27,100]
+      ],
+      colors: [
+        "253,180,92",
+        "247,70,74",
+        "70,191,189",
+        "148,159,177",
+        "77,83,96"
+      ],
+      options: {},
+      observe: {
+        width: 'resize',
+        height: 'resize',
+        labels: 'updateChart',
+        colors: 'updateChart',
+        values: 'updateChart',
+        options: 'updateChart'
+      },
+      resize: function() {
+        if (this.chart) {
+          this.updateChart();
+        }
+      },
+      updateChart:function() {
+        this.async(function() {
+          if (this.chart) {
+            this.chart.destroy();
+            // Bindings don't seem to be taking effect properly so
+            // manually set width and height
+            this.$.canvas.setAttribute('width', this.width);
+            this.$.canvas.setAttribute('height', this.height);
+          }
+          this.datasets = [];
+          this.values.forEach(function (val, i) {
+            this.datasets.push({
+              fillColor:    "rgba(" + this.colors[i] + ",0.5)",
+              strokeColor:  "rgba(" + this.colors[i] + ",1)",
+              pointColor:   "rgba(" + this.colors[i] + ",1)",
+              pointStrokeColor: "#fff",
+              data: this.values[i]
+            });
+          }, this);
 
-  <style>
+          this.data = { labels: this.labels, datasets: this.datasets };
+          this.ctx = this.$.canvas.getContext('2d');
+          this.chart = new Chart(this.ctx).Line(this.data, this.options);
+        }, null, 0);
+      }
+    });
+  </script>
+</polymer-element>
+
+<polymer-element name="chart-pie" attributes="width height values colors options" assetpath="bower_components/chart-elements/">
+  <template>
+    <style>
     :host {
       display: inline-block;
     }
-  </style>
+    </style>
+    <canvas id="canvas" width="{{width}}" height="{{height}}"></canvas>
+  </template>
+  <script>
+    Polymer('chart-pie',{
+      values: [30, 50, 100, 40, 120],
+      colors: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+      options: {},
+      observe: {
+        width: 'resize',
+        height: 'resize',
+        colors: 'updateChart',
+        values: 'updateChart',
+        options: 'updateChart'
+      },
+      resize: function() {
+        if (this.chart) {
+          this.updateChart();
+        }
+      },
+      updateChart: function () {
+        this.async(function() {
+          if (this.chart) {
+            this.chart.destroy();
+            // Bindings don't seem to be taking effect properly so
+            // manually set width and height
+            this.$.canvas.setAttribute('width', this.width);
+            this.$.canvas.setAttribute('height', this.height);
+          }
+          this.data = [];
+          this.values.forEach(function (val, i) {
+            this.data.push({ color: this.colors[i], value: val });
+          }, this);
 
-  <paper-input-decorator id="decorator" label="{{label}}" floatinglabel="{{floatingLabel}}" value="{{value}}" disabled?="{{disabled}}">
-    <input is="core-input" id="input" value="{{value}}" committedvalue="{{committedValue}}" on-change="{{changeAction}}" disabled?="{{disabled}}">
-  </paper-input-decorator>
+          this.ctx = this.$.canvas.getContext('2d');
+          this.chart = new Chart(this.ctx).Pie(this.data, this.options);
+        }, null, 0);
+      }
+    });
+  </script>
+</polymer-element>
 
-</template>
+<polymer-element name="chart-polar-area" attributes="width height values colors options" assetpath="bower_components/chart-elements/">
+  <template>
+    <canvas id="canvas" width="{{width}}" height="{{height}}"></canvas>
+  </template>
+  <script>
+    Polymer("chart-polar-area", {
+      values: [30, 90, 18, 58, 82],
+      colors: ["#00E676", "#FF3D00", "#00B0FF", "#D500F9"],
+      options: {},
+      observe: {
+        width: 'resize',
+        height: 'resize',
+        labels: 'updateChart',
+        colors: 'updateChart',
+        values: 'updateChart',
+        options: 'updateChart'
+      },
+      resize: function() {
+        if (this.chart) {
+          this.updateChart();
+        }
+      },
+      updateChart: function () {
+        this.async(function() {
+          if (this.chart) {
+            this.chart.destroy();
+            // Bindings don't seem to be taking effect properly so
+            // manually set width and height
+            this.$.canvas.setAttribute('width', this.width);
+            this.$.canvas.setAttribute('height', this.height);
+          }
+          this.data = [];
+          this.values.forEach(function (val, i) {
+            this.data.push({ color: this.colors[i], value: val });
+          }, this);
 
-<script>
+          this.ctx = this.$.canvas.getContext('2d');
+          this.chart = new Chart(this.ctx).PolarArea(this.data, this.options);
+        }, null, 0);
+      }
+    });
+  </script>
+</polymer-element>
 
-  Polymer('paper-input', {
+<polymer-element name="chart-radar" attributes="width height labels values colors options" assetpath="bower_components/chart-elements/">
+  <template>
+    <canvas id="canvas" width="{{width}}" height="{{height}}"></canvas>
+  </template>
+  <script>
+    Polymer('chart-radar',{
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      values: [
+        [65,59,90,81,56,55,40],
+        [28,48,40,19,96,27,100]
+      ],
+      colors: [
+        "253,180,92",
+        "247,70,74",
+        "70,191,189",
+        "148,159,177",
+        "77,83,96"
+      ],
+      options: {},
+      observe: {
+        width: 'resize',
+        height: 'resize',
+        colors: 'updateChart',
+        values: 'updateChart',
+        labels: 'updateChart',
+        options: 'updateChart'
+      },
+      resize: function() {
+        if (this.chart) {
+          this.updateChart();
+        }
+      },
+      updateChart: function () {
+        this.async(function() {
+          if (this.chart) {
+            this.chart.destroy();
+            // Bindings don't seem to be taking effect properly so
+            // manually set width and height
+            this.$.canvas.setAttribute('width', this.width);
+            this.$.canvas.setAttribute('height', this.height);
+          }
+          this.datasets = [];
+          this.values.forEach(function (val, i) {
+            this.datasets.push({
+              fillColor:    "rgba(" + this.colors[i] + ",0.5)",
+              strokeColor:  "rgba(" + this.colors[i] + ",1)",
+              pointColor:   "rgba(" + this.colors[i] + ",1)",
+              pointStrokeColor: "#fff",
+              data: this.values[i]
+            });
+          }, this);
 
-    publish: {
+          this.data = { labels: this.labels, datasets: this.datasets };
+          this.ctx = this.$.canvas.getContext('2d');
+          this.chart = new Chart(this.ctx).Radar(this.data, this.options);
+        }, null, 0);
+      }
+    });
+  </script>
+</polymer-element>
+
+<polymer-element name="core-media-query" attributes="query queryMatches" assetpath="bower_components/core-media-query/">
+  <template>
+    <style>
+      :host {
+        display: none;
+      }
+    </style>
+  </template>
+  <script>
+    Polymer('core-media-query', {
+
       /**
-       * The label for this input. It normally appears as grey text inside
-       * the text input and disappears once the user enters text.
+       * The Boolean return value of the media query
        *
-       * @attribute label
+       * @attribute queryMatches
+       * @type Boolean
+       * @default false
+       */
+      queryMatches: false,
+
+      /**
+       * The CSS media query to evaulate
+       *
+       * @attribute query
        * @type string
        * @default ''
        */
-      label: '',
-
-      /**
-       * If true, the label will "float" above the text input once the
-       * user enters text instead of disappearing.
-       *
-       * @attribute floatingLabel
-       * @type boolean
-       * @default false
-       */
-      floatingLabel: false,
-
-      /**
-       * Set to true to style the element as disabled.
-       *
-       * @attribute disabled
-       * @type boolean
-       * @default false
-       */
-      disabled: {value: false, reflect: true},
-
-      /**
-       * The current value of the input.
-       *
-       * @attribute value
-       * @type String
-       * @default ''
-       */
-      value: '',
-
-      /**
-       * The most recently committed value of the input.
-       *
-       * @attribute committedValue
-       * @type String
-       * @default ''
-       */
-      committedValue: ''
-
-    },
-
-    /**
-     * Focuses the `input`.
-     *
-     * @method focus
-     */
-    focus: function() {
-      this.$.input.focus();
-    },
-
-    valueChanged: function() {
-      this.$.decorator.updateLabelVisibility(this.value);
-    },
-
-    changeAction: function(e) {
-      // re-fire event that does not bubble across shadow roots
-      this.fire('change', null, this);
-    }
-
-  });
-
-</script>
-
-</polymer-element>
-
-<polymer-element name="paper-autogrow-textarea" on-input="{{inputAction}}" assetpath="bower_components/paper-input/">
-<template>
-
-  <style>
-    :host {
-      display: inline-block;
-      position: relative;
-      width: 400px;
-    }
-
-    .mirror-text {
-      visibility: hidden;
-      word-wrap: break-word;
-    }
-
-    ::content textarea {
-      padding: 0;
-      margin: 0;
-      border: none;
-      outline: none;
-      resize: none;
-      /* see comments in template */
-      width: 100%;
-      height: 100%;
-    }
-
-    ::content textarea:invalid {
-      box-shadow: none;
-    }
-  </style>
-
-  <!-- the mirror sizes the input/textarea so it grows with typing -->
-  <div id="mirror" class="mirror-text" aria-hidden="true">&nbsp;</div>
-
-  <!-- size the input/textarea with a div, because the textarea has intrinsic size in ff -->
-  <div class="textarea-container" fit="">
-    <content></content>
-  </div>
-
-</template>
-<script>
-
-  Polymer('paper-autogrow-textarea',{
-
-    publish: {
-
-        /**
-         * The textarea that should auto grow.
-         *
-         * @attribute target
-         * @type HTMLTextAreaElement
-         * @default null
-         */
-        target: null,
-
-        /**
-         * The initial number of rows.
-         *
-         * @attribute rows
-         * @type number
-         * @default 1
-         */
-        rows: 1,
-
-        /**
-         * The maximum number of rows this element can grow to until it
-         * scrolls. 0 means no maximum.
-         *
-         * @attribute maxRows
-         * @type number
-         * @default 0
-         */
-        maxRows: 0
-    },
-
-    tokens: null,
-
-    observe: {
-      rows: 'updateCached',
-      maxRows: 'updateCached'
-    },
-
-    constrain: function(tokens) {
-      var _tokens;
-      tokens = tokens || [''];
-      // Enforce the min and max heights for a multiline input to avoid measurement
-      if (this.maxRows > 0 && tokens.length > this.maxRows) {
-        _tokens = tokens.slice(0, this.maxRows);
-      } else {
-        _tokens = tokens.slice(0);
-      }
-      while (this.rows > 0 && _tokens.length < this.rows) {
-        _tokens.push('');
-      }
-      return _tokens.join('<br>') + '&nbsp;';
-    },
-
-    valueForMirror: function(input) {
-      this.tokens = (input && input.value) ? input.value.replace(/&/gm, '&amp;').replace(/"/gm, '&quot;').replace(/'/gm, '&#39;').replace(/</gm, '&lt;').replace(/>/gm, '&gt;').split('\n') : [''];
-      return this.constrain(this.tokens);
-    },
-
-    /**
-     * Sizes this element to fit the input value. This function is automatically called
-     * when the user types in new input, but you must call this function if the value
-     * is updated imperatively.
-     *
-     * @method update
-     * @param Element The input
-     */
-    update: function(input) {
-      this.$.mirror.innerHTML = this.valueForMirror(input);
-    },
-
-    updateCached: function() {
-      this.$.mirror.innerHTML = this.constrain(this.tokens);
-    },
-
-    inputAction: function(e) {
-      this.update(e.target);
-    }
-
-  });
-
-</script>
-</polymer-element>
-
-<polymer-element name="paper-shadow" assetpath="bower_components/paper-shadow/">
-
-<template>
-
-  <div id="shadow-bottom" fit="" animated?="[[animated]]" class="paper-shadow-bottom-z-[[z]]"></div>
-  <div id="shadow-top" fit="" animated?="[[animated]]" class="paper-shadow-top-z-[[z]]"></div>
-
-  <content></content>
-
-</template>
-
-<script>
-  Polymer('paper-shadow',{
-
-    publish: {
-
-      /**
-       * The z-depth of this shadow, from 0-5. Setting this property
-       * after element creation has no effect. Use `setZ()` instead.
-       *
-       * @attribute z
-       * @type number
-       * @default 1
-       */
-      z: 1,
-
-      /**
-       * Set this to true to animate the shadow when setting a new
-       * `z` value.
-       *
-       * @attribute animated
-       * @type boolean
-       * @default false
-       */
-      animated: false
-
-    },
-
-    /**
-     * Set the z-depth of the shadow. This should be used after element
-     * creation instead of setting the z property directly.
-     *
-     * @method setZ
-     * @param {Number} newZ
-     */
-    setZ: function(newZ) {
-      if (this.z !== newZ) {
-        this.$['shadow-bottom'].classList.remove('paper-shadow-bottom-z-' + this.z);
-        this.$['shadow-bottom'].classList.add('paper-shadow-bottom-z-' + newZ);
-        this.$['shadow-top'].classList.remove('paper-shadow-top-z-' + this.z);
-        this.$['shadow-top'].classList.add('paper-shadow-top-z-' + newZ);
-        this.z = newZ;
-      }
-    }
-
-  });
-</script>
-</polymer-element>
-
-<polymer-element name="core-a11y-keys" assetpath="bower_components/core-a11y-keys/">
-<script>
-  (function() {
-    /*
-     * Chrome uses an older version of DOM Level 3 Keyboard Events
-     *
-     * Most keys are labeled as text, but some are Unicode codepoints.
-     * Values taken from: http://www.w3.org/TR/2007/WD-DOM-Level-3-Events-20071221/keyset.html#KeySet-Set
-     */
-    var KEY_IDENTIFIER = {
-      'U+0009': 'tab',
-      'U+001B': 'esc',
-      'U+0020': 'space',
-      'U+002A': '*',
-      'U+0030': '0',
-      'U+0031': '1',
-      'U+0032': '2',
-      'U+0033': '3',
-      'U+0034': '4',
-      'U+0035': '5',
-      'U+0036': '6',
-      'U+0037': '7',
-      'U+0038': '8',
-      'U+0039': '9',
-      'U+0041': 'a',
-      'U+0042': 'b',
-      'U+0043': 'c',
-      'U+0044': 'd',
-      'U+0045': 'e',
-      'U+0046': 'f',
-      'U+0047': 'g',
-      'U+0048': 'h',
-      'U+0049': 'i',
-      'U+004A': 'j',
-      'U+004B': 'k',
-      'U+004C': 'l',
-      'U+004D': 'm',
-      'U+004E': 'n',
-      'U+004F': 'o',
-      'U+0050': 'p',
-      'U+0051': 'q',
-      'U+0052': 'r',
-      'U+0053': 's',
-      'U+0054': 't',
-      'U+0055': 'u',
-      'U+0056': 'v',
-      'U+0057': 'w',
-      'U+0058': 'x',
-      'U+0059': 'y',
-      'U+005A': 'z',
-      'U+007F': 'del'
-    };
-
-    /*
-     * Special table for KeyboardEvent.keyCode.
-     * KeyboardEvent.keyIdentifier is better, and KeyBoardEvent.key is even better than that
-     *
-     * Values from: https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent.keyCode#Value_of_keyCode
-     */
-    var KEY_CODE = {
-      9: 'tab',
-      13: 'enter',
-      27: 'esc',
-      33: 'pageup',
-      34: 'pagedown',
-      35: 'end',
-      36: 'home',
-      32: 'space',
-      37: 'left',
-      38: 'up',
-      39: 'right',
-      40: 'down',
-      46: 'del',
-      106: '*'
-    };
-
-    /*
-     * KeyboardEvent.key is mostly represented by printable character made by the keyboard, with unprintable keys labeled
-     * nicely.
-     *
-     * However, on OS X, Alt+char can make a Unicode character that follows an Apple-specific mapping. In this case, we
-     * fall back to .keyCode.
-     */
-    var KEY_CHAR = /[a-z0-9*]/;
-
-    function transformKey(key) {
-      var validKey = '';
-      if (key) {
-        var lKey = key.toLowerCase();
-        if (lKey.length == 1) {
-          if (KEY_CHAR.test(lKey)) {
-            validKey = lKey;
-          }
-        } else if (lKey == 'multiply') {
-          // numpad '*' can map to Multiply on IE/Windows
-          validKey = '*';
-        } else {
-          validKey = lKey;
-        }
-      }
-      return validKey;
-    }
-
-    var IDENT_CHAR = /U\+/;
-    function transformKeyIdentifier(keyIdent) {
-      var validKey = '';
-      if (keyIdent) {
-        if (IDENT_CHAR.test(keyIdent)) {
-          validKey = KEY_IDENTIFIER[keyIdent];
-        } else {
-          validKey = keyIdent.toLowerCase();
-        }
-      }
-      return validKey;
-    }
-
-    function transformKeyCode(keyCode) {
-      var validKey = '';
-      if (Number(keyCode)) {
-        if (keyCode >= 65 && keyCode <= 90) {
-          // ascii a-z
-          // lowercase is 32 offset from uppercase
-          validKey = String.fromCharCode(32 + keyCode);
-        } else if (keyCode >= 112 && keyCode <= 123) {
-          // function keys f1-f12
-          validKey = 'f' + (keyCode - 112);
-        } else if (keyCode >= 48 && keyCode <= 57) {
-          // top 0-9 keys
-          validKey = String(48 - keyCode);
-        } else if (keyCode >= 96 && keyCode <= 105) {
-          // num pad 0-9
-          validKey = String(96 - keyCode);
-        } else {
-          validKey = KEY_CODE[keyCode];
-        }
-      }
-      return validKey;
-    }
-
-    function keyboardEventToKey(ev) {
-      // fall back from .key, to .keyIdentifier, to .keyCode, and then to .detail.key to support artificial keyboard events
-      var normalizedKey = transformKey(ev.key) || transformKeyIdentifier(ev.keyIdentifier) || transformKeyCode(ev.keyCode) || transformKey(ev.detail.key) || '';
-      return {
-        shift: ev.shiftKey,
-        ctrl: ev.ctrlKey,
-        meta: ev.metaKey,
-        alt: ev.altKey,
-        key: normalizedKey
-      };
-    }
-
-    /*
-     * Input: ctrl+shift+f7 => {ctrl: true, shift: true, key: 'f7'}
-     * ctrl/space => {ctrl: true} || {key: space}
-     */
-    function stringToKey(keyCombo) {
-      var keys = keyCombo.split('+');
-      var keyObj = Object.create(null);
-      keys.forEach(function(key) {
-        if (key == 'shift') {
-          keyObj.shift = true;
-        } else if (key == 'ctrl') {
-          keyObj.ctrl = true;
-        } else if (key == 'alt') {
-          keyObj.alt = true;
-        } else {
-          keyObj.key = key;
-        }
-      });
-      return keyObj;
-    }
-
-    function keyMatches(a, b) {
-      return Boolean(a.alt) == Boolean(b.alt) && Boolean(a.ctrl) == Boolean(b.ctrl) && Boolean(a.shift) == Boolean(b.shift) && a.key === b.key;
-    }
-
-    /**
-     * Fired when a keycombo in `keys` is pressed.
-     *
-     * @event keys-pressed
-     */
-    function processKeys(ev) {
-      var current = keyboardEventToKey(ev);
-      for (var i = 0, dk; i < this._desiredKeys.length; i++) {
-        dk = this._desiredKeys[i];
-        if (keyMatches(dk, current)) {
-          ev.preventDefault();
-          ev.stopPropagation();
-          this.fire('keys-pressed', current, this, false);
-          break;
-        }
-      }
-    }
-
-    function listen(node, handler) {
-      if (node && node.addEventListener) {
-        node.addEventListener('keydown', handler);
-      }
-    }
-
-    function unlisten(node, handler) {
-      if (node && node.removeEventListener) {
-        node.removeEventListener('keydown', handler);
-      }
-    }
-
-    Polymer('core-a11y-keys', {
-      created: function() {
-        this._keyHandler = processKeys.bind(this);
+      query: '',
+      ready: function() {
+        this._mqHandler = this.queryHandler.bind(this);
+        this._mq = null;
       },
-      attached: function() {
-        if (!this.target) {
-          this.target = this.parentNode;
+      queryChanged: function() {
+        if (this._mq) {
+          this._mq.removeListener(this._mqHandler);
         }
-        listen(this.target, this._keyHandler);
-      },
-      detached: function() {
-        unlisten(this.target, this._keyHandler);
-      },
-      publish: {
-        /**
-         * The set of key combinations that will be matched (in keys syntax).
-         *
-         * @attribute keys
-         * @type string
-         * @default ''
-         */
-        keys: '',
-        /**
-         * The node that will fire keyboard events.
-         * Default to this element's parentNode unless one is assigned
-         *
-         * @attribute target
-         * @type Node
-         * @default this.parentNode
-         */
-        target: null
-      },
-      keysChanged: function() {
-        // * can have multiple mappings: shift+8, * on numpad or Multiply on numpad
-        var normalized = this.keys.replace('*', '* shift+*');
-        this._desiredKeys = normalized.toLowerCase().split(' ').map(stringToKey);
-      },
-      targetChanged: function(oldTarget) {
-        unlisten(oldTarget, this._keyHandler);
-        listen(this.target, this._keyHandler);
-      }
-    });
-  })();
-</script>
-</polymer-element>
-<polymer-element name="paper-button" extends="paper-button-base" attributes="raised recenteringTouch fill" role="button" assetpath="bower_components/paper-button/">
-
-  <template>
-
-    <style>
-
-      :host {
-        display: inline-block;
-        position: relative;
-        box-sizing: border-box;
-        min-width: 5.14em;
-        margin: 0 0.29em;
-        background: transparent;
-        text-align: center;
-        font: inherit;
-        text-transform: uppercase;
-        outline: none;
-        border-radius: 3px;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        -webkit-user-select: none;
-        user-select: none;
-        cursor: pointer;
-        z-index: 0;
-      }
-
-      :host([disabled]) {
-        background: #eaeaea;
-        color: #a8a8a8;
-        cursor: auto;
-        pointer-events: none;
-      }
-
-      ::content * {
-        text-transform: inherit;
-      }
-
-      #bg, #shadow {
-        border-radius: inherit;
-      }
-
-      #ripple {
-        pointer-events: none;
-        z-index: -1;
-      }
-
-      .button-content {
-        padding: 0.7em 0.57em
-      }
-
-      polyfill-next-selector { content: '.button-content > a'; }
-      ::content > a {
-        height: 100%;
-        padding: 0.7em 0.57em;
-        margin: -0.7em -0.57em;
-        /* flex */
-        -ms-flex: 1 1 0.000000001px;
-        -webkit-flex: 1;
-        flex: 1;
-        -webkit-flex-basis: 0.000000001px;
-        flex-basis: 0.000000001px;
-      }
-
-    </style>
-
-    <template if="{{raised}}">
-      <paper-shadow id="shadow" fit="" animated=""></paper-shadow>
-    </template>
-
-    <!-- this div is needed to position the ripple behind text content -->
-    <div class="button-content" relative="" layout="" horizontal="" center-center="">
-      <content></content>
-    </div>
-
-    <core-a11y-keys keys="space enter" target="{{}}" on-keys-pressed="{{_activate}}"></core-a11y-keys>
-
-  </template>
-
-  <script>
-    Polymer('paper-button',{
-
-      publish: {
-
-        /**
-         * If true, the button will be styled with a shadow.
-         *
-         * @attribute raised
-         * @type boolean
-         * @default false
-         */
-        raised: false,
-
-        /**
-         * By default the ripple emanates from where the user touched the button.
-         * Set this to true to always center the ripple.
-         *
-         * @attribute recenteringTouch
-         * @type boolean
-         * @default false
-         */
-        recenteringTouch: false,
-
-        /**
-         * By default the ripple expands to fill the button. Set this to true to
-         * constrain the ripple to a circle within the button.
-         *
-         * @attribute fill
-         * @type boolean
-         * @default true
-         */
-        fill: true
-
-      },
-
-      _activate: function() {
-        this.click();
-        this.fire('tap');
-        if (!this.pressed) {
-          var bcr = this.getBoundingClientRect();
-          var x = bcr.left + (bcr.width / 2);
-          var y = bcr.top + (bcr.height / 2);
-          this.downAction({x: x, y: y});
-          var fn = function fn() {
-            this.upAction();
-            this.removeEventListener('keyup', fn);
-          }.bind(this);
-          this.addEventListener('keyup', fn);
+        var query = this.query;
+        if (query[0] !== '(') {
+          query = '(' + this.query + ')';
         }
+        this._mq = window.matchMedia(query);
+        this._mq.addListener(this._mqHandler);
+        this.queryHandler(this._mq);
+      },
+      queryHandler: function(mq) {
+        this.queryMatches = mq.matches;
+        this.asyncFire('core-media-change', mq);
       }
-
     });
   </script>
 </polymer-element>
+<polymer-element name="about-me" assetpath="bower_components/about-me/">
+	<template>
+		<style>
+			#contactinfo {
+				margin:auto;
+				max-width: 70%;
+				font-family: 'Roboto', sans-serif;
+				text-align: left;
+			}
+		</style>
 
+		<div id="contactinfo">
+			<p>
+				Hi! I'm Kenny! Thanks for checking out my portfolio. I'm a developer based in British Columbia, Canada. 
+			</p>
+			<p>
+				I have created this portfolio to share the projects that I have been working on when I began to learn about software development. 
+			</p>
+			
+			<core-media-query query="max-width:640px" querymatches="{{phoneScreen}}"></core-media-query>
+				<div layout="" vertical?="{{phoneScreen}}" horizontal?="{{!phoneScreen}}&quot;">
+					<div auto-vertical="" flex="">
+						<p>
+							<chart-bar width="250" height="200" labels="['C','C++','C#','Java','SQL']" ,="" values="[ [70,75,80,80,90] ]" colors="['33,150,243']">
+							</chart-bar>
+							<br>
+							Programming Languages
+						</p>
+					</div>
+					<div auto-vertical="" flex="">
+						<p>
+							<chart-bar width="250" height="200" labels="['HTML','CSS','JS','PHP']" ,="" values="[ [80,65,65,70] ]" colors="['244,67,54']">
+							</chart-bar>
+							<br>
+							Web Languages
+						</p>
+					</div>
+					<div auto-vertical="" flex="">
+						<p>
+							<chart-polar-area width="250" height="200" values="[75, 100, 80, 70]">
+							</chart-polar-area>
+							<br>
+							Development Frameworks
+						</p>
+					</div>
+				</div>
+			</div>
+		
+	</template>
+	<script>
+		Polymer('about-me');
+	</script>
+</polymer-element>
+<polymer-element name="my-projects" assetpath="bower_components/my-projects/">
+	<template>
+		<style>
+			.projects {
+				margin: 50px auto;
+			}
+		</style>
+			<div class="projects">
+				<core-media-query query="max-width:640px" querymatches="{{phoneScreen}}"></core-media-query>
+				<div layout="" vertical?="{{phoneScreen}}" horizontal?="{{!phoneScreen}}&quot;">
+					<div auto-vertical="" flex=""><a href="projects/health-plan.html"><img src="images/health_plan.png" height="227" width="227"></a></div>
+					<div auto-vertical=""><a href="projects/blonyx-web.html"><img src="images/blonyx.png"></a></div>
+					<div auto-vertical="" flex=""><a href="projects/booklet-app.html"><img src="images/booklet.png" height="227" width="227"></a></div>
+				</div>
+				
+				<div layout="" vertical?="{{phoneScreen}}" horizontal?="{{!phoneScreen}}&quot;">
+					<div auto-vertical="" flex=""><a href="projects/gold-can.html"><img src="images/gold_can.jpg"></a></div>
+					<div auto-vertical=""><a href="projects/project-management.html"><img src="images/pms.png" height="227" width="227"></a></div>
+					<div auto-vertical="" flex=""><a href="projects/nxt-robot.html"><img src="images/nxt_robot.jpg"></a></div>
+				</div>
+				
+				<div layout="" vertical?="{{phoneScreen}}" horizontal?="{{!phoneScreen}}&quot;">
+					<div auto-vertical="" flex=""><a href="projects/downhill-federation.html"><img src="images/idf.jpg" height="227" width="227"></a></div>
+				</div>
+			</div>
+	</template>
+	<script>
+		Polymer('my-projects');
+	</script>
+</polymer-element>
 <polymer-element name="core-transition" extends="core-meta" assetpath="bower_components/core-transition/">
   
   <script>
@@ -5244,1461 +3985,6 @@ polyfill-next-selector {
 
     });
   </script>
-</polymer-element>
-
-<polymer-element name="core-key-helper" assetpath="bower_components/core-overlay/">
-  <script>
-    Polymer('core-key-helper', {
-      ENTER_KEY: 13,
-      ESCAPE_KEY: 27
-    });
-  </script>
-</polymer-element>
-
-<polymer-element name="core-overlay-layer" assetpath="bower_components/core-overlay/">
-<template>
-  <style>
-    :host {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-      display: none;
-    }
-
-    :host(.core-opened) {
-      display: block;
-    }
-  </style>
-  <content></content>
-</template>
-<script>
-(function() {
-
-  Polymer('core-overlay-layer', {
-    publish: {
-      opened: false
-    },
-    openedChanged: function() {
-      this.classList.toggle('core-opened', this.opened);
-    },
-    /**
-     * Adds an element to the overlay layer
-     */
-    addElement: function(element) {
-      if (!this.parentNode) {
-        document.querySelector('body').appendChild(this);
-      }
-      if (element.parentNode !== this) {
-        element.__contents = [];
-        var ip$ = element.querySelectorAll('content');
-        for (var i=0, l=ip$.length, n; (i<l) && (n = ip$[i]); i++) {
-          this.moveInsertedElements(n);
-          this.cacheDomLocation(n);
-          n.parentNode.removeChild(n);
-          element.__contents.push(n);
-        }
-        this.cacheDomLocation(element);
-        this.updateEventController(element);
-        var h = this.makeHost();
-        h.shadowRoot.appendChild(element);
-        element.__host = h;
-      }
-    },
-    makeHost: function() {
-      var h = document.createElement('overlay-host');
-      h.createShadowRoot();
-      this.appendChild(h);
-      return h;
-    },
-    moveInsertedElements: function(insertionPoint) {
-      var n$ = insertionPoint.getDistributedNodes();
-      var parent = insertionPoint.parentNode;
-      insertionPoint.__contents = [];
-      for (var i=0, l=n$.length, n; (i<l) && (n=n$[i]); i++) {
-        this.cacheDomLocation(n);
-        this.updateEventController(n);
-        insertionPoint.__contents.push(n);
-        parent.appendChild(n);  
-      }
-    },
-    updateEventController: function(element) {
-      element.eventController = this.element.findController(element);
-    },
-    /**
-     * Removes an element from the overlay layer
-     */
-    removeElement: function(element) {
-      element.eventController = null;
-      this.replaceElement(element);
-      var h = element.__host;
-      if (h) {
-        h.parentNode.removeChild(h);
-      }
-    },
-    replaceElement: function(element) {
-      if (element.__contents) {
-        for (var i=0, c$=element.__contents, c; (c=c$[i]); i++) {
-          this.replaceElement(c);
-        }
-        element.__contents = null;
-      }
-      if (element.__parentNode) {
-        var n = element.__nextElementSibling && element.__nextElementSibling 
-            === element.__parentNode ? element.__nextElementSibling : null;
-        element.__parentNode.insertBefore(element, n);
-      }
-    },
-    cacheDomLocation: function(element) {
-      element.__nextElementSibling = element.nextElementSibling;
-      element.__parentNode = element.parentNode;
-    }
-  });
-  
-})();
-</script>
-</polymer-element>
-<polymer-element name="core-overlay" assetpath="bower_components/core-overlay/">
-<script>
-(function() {
-
-  Polymer('core-overlay',Polymer.mixin({
-
-    publish: {
-      /**
-       * The target element that will be shown when the overlay is 
-       * opened. If unspecified, the core-overlay itself is the target.
-       *
-       * @attribute target
-       * @type Object
-       * @default the overlay element
-       */
-      target: null,
-
-
-      /**
-       * A `core-overlay`'s size is guaranteed to be 
-       * constrained to the window size. To achieve this, the sizingElement
-       * is sized with a max-height/width. By default this element is the 
-       * target element, but it can be specifically set to a specific element
-       * inside the target if that is more appropriate. This is useful, for 
-       * example, when a region inside the overlay should scroll if needed.
-       *
-       * @attribute sizingTarget
-       * @type Object
-       * @default the target element
-       */
-      sizingTarget: null,
-    
-      /**
-       * Set opened to true to show an overlay and to false to hide it.
-       * A `core-overlay` may be made initially opened by setting its
-       * `opened` attribute.
-       * @attribute opened
-       * @type boolean
-       * @default false
-       */
-      opened: false,
-
-      /**
-       * If true, the overlay has a backdrop darkening the rest of the screen.
-       * The backdrop element is attached to the document body and may be styled
-       * with the class `core-overlay-backdrop`. When opened the `core-opened`
-       * class is applied.
-       *
-       * @attribute backdrop
-       * @type boolean
-       * @default false
-       */    
-      backdrop: false,
-
-      /**
-       * If true, the overlay is guaranteed to display above page content.
-       *
-       * @attribute layered
-       * @type boolean
-       * @default false
-      */
-      layered: false,
-    
-      /**
-       * By default an overlay will close automatically if the user
-       * taps outside it or presses the escape key. Disable this
-       * behavior by setting the `autoCloseDisabled` property to true.
-       * @attribute autoCloseDisabled
-       * @type boolean
-       * @default false
-       */
-      autoCloseDisabled: false,
-
-      /**
-       * By default an overlay will focus its target or an element inside
-       * it with the `autoFocus` attribute. Disable this
-       * behavior by setting the `autoFocusDisabled` property to true.
-       * @attribute autoFocusDisabled
-       * @type boolean
-       * @default false
-       */
-      autoFocusDisabled: false,
-
-      /**
-       * This property specifies an attribute on elements that should
-       * close the overlay on tap. Should not set `closeSelector` if this
-       * is set.
-       *
-       * @attribute closeAttribute
-       * @type string
-       * @default "core-overlay-toggle"
-       */
-      closeAttribute: 'core-overlay-toggle',
-
-      /**
-       * This property specifies a selector matching elements that should
-       * close the overlay on tap. Should not set `closeAttribute` if this
-       * is set.
-       *
-       * @attribute closeSelector
-       * @type string
-       * @default ""
-       */
-      closeSelector: '',
-
-      /**
-       * The transition property specifies a string which identifies a 
-       * <a href="../core-transition/">`core-transition`</a> element that 
-       * will be used to help the overlay open and close. The default
-       * `core-transition-fade` will cause the overlay to fade in and out.
-       *
-       * @attribute transition
-       * @type string
-       * @default 'core-transition-fade'
-       */
-      transition: 'core-transition-fade'
-
-    },
-
-    captureEventName: 'tap',
-    targetListeners: {
-      'tap': 'tapHandler',
-      'keydown': 'keydownHandler',
-      'core-transitionend': 'transitionend'
-    },
-
-    attached: function() {
-      this.resizerAttachedHandler();
-    },
-
-    detached: function() {
-      this.resizerDetachedHandler();
-    },
-
-    resizerShouldNotify: function() {
-      return this.opened;
-    },
-
-    registerCallback: function(element) {
-      this.layer = document.createElement('core-overlay-layer');
-      this.keyHelper = document.createElement('core-key-helper');
-      this.meta = document.createElement('core-transition');
-      this.scrim = document.createElement('div');
-      this.scrim.className = 'core-overlay-backdrop';
-    },
-
-    ready: function() {
-      this.target = this.target || this;
-      // flush to ensure styles are installed before paint
-      Polymer.flush();
-    },
-
-    /** 
-     * Toggle the opened state of the overlay.
-     * @method toggle
-     */
-    toggle: function() {
-      this.opened = !this.opened;
-    },
-
-    /** 
-     * Open the overlay. This is equivalent to setting the `opened`
-     * property to true.
-     * @method open
-     */
-    open: function() {
-      this.opened = true;
-    },
-
-    /** 
-     * Close the overlay. This is equivalent to setting the `opened` 
-     * property to false.
-     * @method close
-     */
-    close: function() {
-      this.opened = false;
-    },
-
-    domReady: function() {
-      this.ensureTargetSetup();
-    },
-
-    targetChanged: function(old) {
-      if (this.target) {
-        // really make sure tabIndex is set
-        if (this.target.tabIndex < 0) {
-          this.target.tabIndex = -1;
-        }
-        this.addElementListenerList(this.target, this.targetListeners);
-        this.target.style.display = 'none';
-        this.target.__overlaySetup = false;
-      }
-      if (old) {
-        this.removeElementListenerList(old, this.targetListeners);
-        var transition = this.getTransition();
-        if (transition) {
-          transition.teardown(old);
-        } else {
-          old.style.position = '';
-          old.style.outline = '';
-        }
-        old.style.display = '';
-      }
-    },
-
-    transitionChanged: function(old) {
-      if (!this.target) {
-        return;
-      }
-      if (old) {
-        this.getTransition(old).teardown(this.target);
-      }
-      this.target.__overlaySetup = false;
-    },
-
-    // NOTE: wait to call this until we're as sure as possible that target
-    // is styled.
-    ensureTargetSetup: function() {
-      if (!this.target || this.target.__overlaySetup) {
-        return;
-      }
-      if (!this.sizingTarget) {
-        this.sizingTarget = this.target;
-      }
-      this.target.__overlaySetup = true;
-      this.target.style.display = '';
-      var transition = this.getTransition();
-      if (transition) {
-        transition.setup(this.target);
-      }
-      var style = this.target.style;
-      var computed = getComputedStyle(this.target);
-      if (computed.position === 'static') {
-        style.position = 'fixed';
-      }
-      style.outline = 'none';
-      style.display = 'none';
-    },
-
-    openedChanged: function() {
-      this.transitioning = true;
-      this.ensureTargetSetup();
-      this.prepareRenderOpened();
-      // async here to allow overlay layer to become visible.
-      this.async(function() {
-        this.target.style.display = '';
-        // force layout to ensure transitions will go
-        this.target.offsetWidth;
-        this.renderOpened();
-      });
-      this.fire('core-overlay-open', this.opened);
-    },
-
-    // tasks which must occur before opening; e.g. making the element visible
-    prepareRenderOpened: function() {
-      if (this.opened) {
-        addOverlay(this);
-      }
-      this.prepareBackdrop();
-      // async so we don't auto-close immediately via a click.
-      this.async(function() {
-        if (!this.autoCloseDisabled) {
-          this.enableElementListener(this.opened, document,
-              this.captureEventName, 'captureHandler', true);
-        }
-      });
-      this.enableElementListener(this.opened, window, 'resize',
-          'resizeHandler');
-
-      if (this.opened) {
-        // force layout so SD Polyfill renders
-        this.target.offsetHeight;
-        this.discoverDimensions();
-        // if we are showing, then take care when positioning
-        this.preparePositioning();
-        this.positionTarget();
-        this.updateTargetDimensions();
-        this.finishPositioning();
-        if (this.layered) {
-          this.layer.addElement(this.target);
-          this.layer.opened = this.opened;
-        }
-      }
-    },
-
-    // tasks which cause the overlay to actually open; typically play an
-    // animation
-    renderOpened: function() {
-      this.notifyResize();
-      var transition = this.getTransition();
-      if (transition) {
-        transition.go(this.target, {opened: this.opened});
-      } else {
-        this.transitionend();
-      }
-      this.renderBackdropOpened();
-    },
-
-    // finishing tasks; typically called via a transition
-    transitionend: function(e) {
-      // make sure this is our transition event.
-      if (e && e.target !== this.target) {
-        return;
-      }
-      this.transitioning = false;
-      if (!this.opened) {
-        this.resetTargetDimensions();
-        this.target.style.display = 'none';
-        this.completeBackdrop();
-        removeOverlay(this);
-        if (this.layered) {
-          if (!currentOverlay()) {
-            this.layer.opened = this.opened;
-          }
-          this.layer.removeElement(this.target);
-        }
-      }
-      this.fire('core-overlay-' + (this.opened ? 'open' : 'close') + 
-          '-completed');
-      this.applyFocus();
-    },
-
-    prepareBackdrop: function() {
-      if (this.backdrop && this.opened) {
-        if (!this.scrim.parentNode) {
-          document.body.appendChild(this.scrim);
-          this.scrim.style.zIndex = currentOverlayZ() - 1;
-        }
-        trackBackdrop(this);
-      }
-    },
-
-    renderBackdropOpened: function() {
-      if (this.backdrop && getBackdrops().length < 2) {
-        this.scrim.classList.toggle('core-opened', this.opened);
-      }
-    },
-
-    completeBackdrop: function() {
-      if (this.backdrop) {
-        trackBackdrop(this);
-        if (getBackdrops().length === 0) {
-          this.scrim.parentNode.removeChild(this.scrim);
-        }
-      }
-    },
-
-    preparePositioning: function() {
-      this.target.style.transition = this.target.style.webkitTransition = 'none';
-      this.target.style.transform = this.target.style.webkitTransform = 'none';
-      this.target.style.display = '';
-    },
-
-    discoverDimensions: function() {
-      if (this.dimensions) {
-        return;
-      }
-      var target = getComputedStyle(this.target);
-      var sizer = getComputedStyle(this.sizingTarget);
-      this.dimensions = {
-        position: {
-          v: target.top !== 'auto' ? 'top' : (target.bottom !== 'auto' ?
-            'bottom' : null),
-          h: target.left !== 'auto' ? 'left' : (target.right !== 'auto' ?
-            'right' : null),
-          css: target.position
-        },
-        size: {
-          v: sizer.maxHeight !== 'none',
-          h: sizer.maxWidth !== 'none'
-        },
-        margin: {
-          top: parseInt(target.marginTop) || 0,
-          right: parseInt(target.marginRight) || 0,
-          bottom: parseInt(target.marginBottom) || 0,
-          left: parseInt(target.marginLeft) || 0
-        }
-      };
-    },
-
-    finishPositioning: function(target) {
-      this.target.style.display = 'none';
-      this.target.style.transform = this.target.style.webkitTransform = '';
-      // force layout to avoid application of transform
-      this.target.offsetWidth;
-      this.target.style.transition = this.target.style.webkitTransition = '';
-    },
-
-    getTransition: function(name) {
-      return this.meta.byId(name || this.transition);
-    },
-
-    getFocusNode: function() {
-      return this.target.querySelector('[autofocus]') || this.target;
-    },
-
-    applyFocus: function() {
-      var focusNode = this.getFocusNode();
-      if (this.opened) {
-        if (!this.autoFocusDisabled) {
-          focusNode.focus();
-        }
-      } else {
-        focusNode.blur();
-        if (currentOverlay() == this) {
-          console.warn('Current core-overlay is attempting to focus itself as next! (bug)');
-        } else {
-          focusOverlay();
-        }
-      }
-    },
-
-    positionTarget: function() {
-      // fire positioning event
-      this.fire('core-overlay-position', {target: this.target,
-          sizingTarget: this.sizingTarget, opened: this.opened});
-      if (!this.dimensions.position.v) {
-        this.target.style.top = '0px';
-      }
-      if (!this.dimensions.position.h) {
-        this.target.style.left = '0px';
-      }
-    },
-
-    updateTargetDimensions: function() {
-      this.sizeTarget();
-      this.repositionTarget();
-    },
-
-    sizeTarget: function() {
-      this.sizingTarget.style.boxSizing = 'border-box';
-      var dims = this.dimensions;
-      var rect = this.target.getBoundingClientRect();
-      if (!dims.size.v) {
-        this.sizeDimension(rect, dims.position.v, 'top', 'bottom', 'Height');
-      }
-      if (!dims.size.h) {
-        this.sizeDimension(rect, dims.position.h, 'left', 'right', 'Width');
-      }
-    },
-
-    sizeDimension: function(rect, positionedBy, start, end, extent) {
-      var dims = this.dimensions;
-      var flip = (positionedBy === end);
-      var m = flip ? start : end;
-      var ws = window['inner' + extent];
-      var o = dims.margin[m] + (flip ? ws - rect[end] : 
-          rect[start]);
-      var offset = 'offset' + extent;
-      var o2 = this.target[offset] - this.sizingTarget[offset];
-      this.sizingTarget.style['max' + extent] = (ws - o - o2) + 'px';
-    },
-
-    // vertically and horizontally center if not positioned
-    repositionTarget: function() {
-      // only center if position fixed.      
-      if (this.dimensions.position.css !== 'fixed') {
-        return; 
-      }
-      if (!this.dimensions.position.v) {
-        var t = (window.innerHeight - this.target.offsetHeight) / 2;
-        t -= this.dimensions.margin.top;
-        this.target.style.top = t + 'px';
-      }
-
-      if (!this.dimensions.position.h) {
-        var l = (window.innerWidth - this.target.offsetWidth) / 2;
-        l -= this.dimensions.margin.left;
-        this.target.style.left = l + 'px';
-      }
-    },
-
-    resetTargetDimensions: function() {
-      if (!this.dimensions || !this.dimensions.size.v) {
-        this.sizingTarget.style.maxHeight = '';  
-        this.target.style.top = '';
-      }
-      if (!this.dimensions || !this.dimensions.size.h) {
-        this.sizingTarget.style.maxWidth = '';  
-        this.target.style.left = '';
-      }
-      this.dimensions = null;
-    },
-
-    tapHandler: function(e) {
-      // closeSelector takes precedence since closeAttribute has a default non-null value.
-      if (e.target &&
-          (this.closeSelector && e.target.matches(this.closeSelector)) ||
-          (this.closeAttribute && e.target.hasAttribute(this.closeAttribute))) {
-        this.toggle();
-      } else {
-        if (this.autoCloseJob) {
-          this.autoCloseJob.stop();
-          this.autoCloseJob = null;
-        }
-      }
-    },
-    
-    // We use the traditional approach of capturing events on document
-    // to to determine if the overlay needs to close. However, due to 
-    // ShadowDOM event retargeting, the event target is not useful. Instead
-    // of using it, we attempt to close asynchronously and prevent the close
-    // if a tap event is immediately heard on the target.
-    // TODO(sorvell): This approach will not work with modal. For
-    // this we need a scrim.
-    captureHandler: function(e) {
-      if (!this.autoCloseDisabled && (currentOverlay() == this)) {
-        this.autoCloseJob = this.job(this.autoCloseJob, function() {
-          this.close();
-        });
-      }
-    },
-
-    keydownHandler: function(e) {
-      if (!this.autoCloseDisabled && (e.keyCode == this.keyHelper.ESCAPE_KEY)) {
-        this.close();
-        e.stopPropagation();
-      }
-    },
-
-    /**
-     * Extensions of core-overlay should implement the `resizeHandler`
-     * method to adjust the size and position of the overlay when the 
-     * browser window resizes.
-     * @method resizeHandler
-     */
-    resizeHandler: function() {
-      this.updateTargetDimensions();
-    },
-
-    // TODO(sorvell): these utility methods should not be here.
-    addElementListenerList: function(node, events) {
-      for (var i in events) {
-        this.addElementListener(node, i, events[i]);
-      }
-    },
-
-    removeElementListenerList: function(node, events) {
-      for (var i in events) {
-        this.removeElementListener(node, i, events[i]);
-      }
-    },
-
-    enableElementListener: function(enable, node, event, methodName, capture) {
-      if (enable) {
-        this.addElementListener(node, event, methodName, capture);
-      } else {
-        this.removeElementListener(node, event, methodName, capture);
-      }
-    },
-
-    addElementListener: function(node, event, methodName, capture) {
-      var fn = this._makeBoundListener(methodName);
-      if (node && fn) {
-        Polymer.addEventListener(node, event, fn, capture);
-      }
-    },
-
-    removeElementListener: function(node, event, methodName, capture) {
-      var fn = this._makeBoundListener(methodName);
-      if (node && fn) {
-        Polymer.removeEventListener(node, event, fn, capture);
-      }
-    },
-
-    _makeBoundListener: function(methodName) {
-      var self = this, method = this[methodName];
-      if (!method) {
-        return;
-      }
-      var bound = '_bound' + methodName;
-      if (!this[bound]) {
-        this[bound] = function(e) {
-          method.call(self, e);
-        };
-      }
-      return this[bound];
-    }
-
-  }, Polymer.CoreResizer));
-
-  // TODO(sorvell): This should be an element with private state so it can
-  // be independent of overlay.
-  // track overlays for z-index and focus managemant
-  var overlays = [];
-  function addOverlay(overlay) {
-    var z0 = currentOverlayZ();
-    overlays.push(overlay);
-    var z1 = currentOverlayZ();
-    if (z1 <= z0) {
-      applyOverlayZ(overlay, z0);
-    }
-  }
-
-  function removeOverlay(overlay) {
-    var i = overlays.indexOf(overlay);
-    if (i >= 0) {
-      overlays.splice(i, 1);
-      setZ(overlay, '');
-    }
-  }
-  
-  function applyOverlayZ(overlay, aboveZ) {
-    setZ(overlay.target, aboveZ + 2);
-  }
-  
-  function setZ(element, z) {
-    element.style.zIndex = z;
-  }
-
-  function currentOverlay() {
-    return overlays[overlays.length-1];
-  }
-  
-  var DEFAULT_Z = 10;
-  
-  function currentOverlayZ() {
-    var z;
-    var current = currentOverlay();
-    if (current) {
-      var z1 = window.getComputedStyle(current.target).zIndex;
-      if (!isNaN(z1)) {
-        z = Number(z1);
-      }
-    }
-    return z || DEFAULT_Z;
-  }
-  
-  function focusOverlay() {
-    var current = currentOverlay();
-    // We have to be careful to focus the next overlay _after_ any current
-    // transitions are complete (due to the state being toggled prior to the
-    // transition). Otherwise, we risk infinite recursion when a transitioning
-    // (closed) overlay becomes the current overlay.
-    //
-    // NOTE: We make the assumption that any overlay that completes a transition
-    // will call into focusOverlay to kick the process back off. Currently:
-    // transitionend -> applyFocus -> focusOverlay.
-    if (current && !current.transitioning) {
-      current.applyFocus();
-    }
-  }
-
-  var backdrops = [];
-  function trackBackdrop(element) {
-    if (element.opened) {
-      backdrops.push(element);
-    } else {
-      var i = backdrops.indexOf(element);
-      if (i >= 0) {
-        backdrops.splice(i, 1);
-      }
-    }
-  }
-
-  function getBackdrops() {
-    return backdrops;
-  }
-})();
-</script>
-</polymer-element>
-
-<polymer-element name="core-transition-css" extends="core-transition" attributes="transitionType" assetpath="bower_components/core-transition/">
-<template>
-  <style no-shim="">/* Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt */
-
-:host(.core-transition) {
-  outline: none;
-  overflow: auto;
-  opacity: 0;
-  -webkit-transition: -webkit-transform 0.2s ease-in-out, opacity 0.2s ease-in;
-  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in;
-}
-
-
-:host(.core-transition.core-opened) {
-  opacity: 1;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-}
-
-:host(.core-transition-center) {
-  -webkit-transform: scale(0.5);
-  transform: scale(0.5);
-}
-
-:host(.core-transition-top) {
-  -webkit-transform: translateY(-200%);
-  transform: translateY(-200%);
-}
-
-:host(.core-transition-bottom) {
-  -webkit-transform: translateY(200%);
-  transform: translateY(200%);
-}
-
-:host(.core-transition-left) {
-  -webkit-transform: translateX(-200%);
-  transform: translateX(-200%);
-}
-
-:host(.core-transition-right) {
-  -webkit-transform: translateX(200%);
-  transform: translateX(200%);
-}</style>
-</template>
-<script>
-
-  Polymer('core-transition-css', {
-
-    /**
-     * The class that will be applied to all animated nodes.
-     *
-     * @attribute baseClass
-     * @type string
-     * @default "core-transition"
-     */
-    baseClass: 'core-transition',
-
-    /**
-     * The class that will be applied to nodes in the opened state.
-     *
-     * @attribute openedClass
-     * @type string
-     * @default "core-opened"
-     */
-    openedClass: 'core-opened',
-
-    /**
-     * The class that will be applied to nodes in the closed state.
-     *
-     * @attribute closedClass
-     * @type string
-     * @default "core-closed"
-     */
-    closedClass: 'core-closed',
-
-    /**
-     * Event to listen to for animation completion.
-     *
-     * @attribute completeEventName
-     * @type string
-     * @default "transitionEnd"
-     */
-    completeEventName: 'transitionend',
-
-    publish: {
-      /**
-       * A secondary configuration attribute for the animation. The class
-       * `<baseClass>-<transitionType` is applied to the animated node during
-       * `setup`.
-       *
-       * @attribute transitionType
-       * @type string
-       */
-      transitionType: null
-    },
-
-    registerCallback: function(element) {
-      this.transitionStyle = element.templateContent().firstElementChild;
-    },
-
-    // template is just for loading styles, we don't need a shadowRoot
-    fetchTemplate: function() {
-      return null;
-    },
-
-    go: function(node, state) {
-      if (state.opened !== undefined) {
-        this.transitionOpened(node, state.opened);
-      }
-    },
-
-    setup: function(node) {
-      if (!node._hasTransitionStyle) {
-        if (!node.shadowRoot) {
-          node.createShadowRoot().innerHTML = '<content></content>';
-        }
-        this.installScopeStyle(this.transitionStyle, 'transition',
-            node.shadowRoot);
-        node._hasTransitionStyle = true;
-      }
-      node.classList.add(this.baseClass);
-      if (this.transitionType) {
-        node.classList.add(this.baseClass + '-' + this.transitionType);
-      }
-    },
-
-    teardown: function(node) {
-      node.classList.remove(this.baseClass);
-      if (this.transitionType) {
-        node.classList.remove(this.baseClass + '-' + this.transitionType);
-      }
-    },
-
-    transitionOpened: function(node, opened) {
-      this.listenOnce(node, this.completeEventName, function() {
-        if (!opened) {
-          node.classList.remove(this.closedClass);
-        }
-        this.complete(node);
-      });
-      node.classList.toggle(this.openedClass, opened);
-      node.classList.toggle(this.closedClass, !opened);
-    }
-
-  });
-</script>
-</polymer-element>
-
-<core-transition-css id="core-transition-fade"></core-transition-css>
-<core-transition-css id="core-transition-center" transitiontype="center"></core-transition-css>
-<core-transition-css id="core-transition-top" transitiontype="top"></core-transition-css>
-<core-transition-css id="core-transition-bottom" transitiontype="bottom"></core-transition-css>
-<core-transition-css id="core-transition-left" transitiontype="left"></core-transition-css>
-<core-transition-css id="core-transition-right" transitiontype="right"></core-transition-css>
-
-<polymer-element name="core-media-query" attributes="query queryMatches" assetpath="bower_components/core-media-query/">
-  <template>
-    <style>
-      :host {
-        display: none;
-      }
-    </style>
-  </template>
-  <script>
-    Polymer('core-media-query', {
-
-      /**
-       * The Boolean return value of the media query
-       *
-       * @attribute queryMatches
-       * @type Boolean
-       * @default false
-       */
-      queryMatches: false,
-
-      /**
-       * The CSS media query to evaulate
-       *
-       * @attribute query
-       * @type string
-       * @default ''
-       */
-      query: '',
-      ready: function() {
-        this._mqHandler = this.queryHandler.bind(this);
-        this._mq = null;
-      },
-      queryChanged: function() {
-        if (this._mq) {
-          this._mq.removeListener(this._mqHandler);
-        }
-        var query = this.query;
-        if (query[0] !== '(') {
-          query = '(' + this.query + ')';
-        }
-        this._mq = window.matchMedia(query);
-        this._mq.addListener(this._mqHandler);
-        this.queryHandler(this._mq);
-      },
-      queryHandler: function(mq) {
-        this.queryMatches = mq.matches;
-        this.asyncFire('core-media-change', mq);
-      }
-    });
-  </script>
-</polymer-element>
-<polymer-element name="paper-toast" attributes="text duration opened responsiveWidth swipeDisabled autoCloseDisabled" role="status" assetpath="bower_components/paper-toast/">
-
-<template>
-
-  <style>/*
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-
-:host {
-  display: inline-block;
-  background: #323232;
-  color: #f1f1f1;
-  min-height: 48px;
-  min-width: 288px;
-  padding: 16px 24px 12px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  border-radius: 2px;
-  bottom: 12px;
-  left: 12px;
-  font-size: 14px;
-  cursor: default;
-}
-
-:host(.capsule) {
-  border-radius: 24px;
-}
-
-:host(.fit-bottom) {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  min-width: 0;
-  border-radius: 0;
-}
-
-:host(.core-transition.dragging) {
-  transition: none;
-}
-
-:host(.core-transition.fade-out-down),
-:host(.core-transition.fade-out-up),
-:host(.core-transition.fade-out-right),
-:host(.core-transition.fade-out-left) {
-  opacity: 0;
-  transition: -webkit-transform 0.08s ease-in-out, opacity 0.08s ease-in-out;
-  transition: transform 0.08s ease-in-out, opacity 0.08s ease-in-out;
-}
-
-:host(.core-transition.fade-out-down) {
-  -webkit-transform: translate(0, 100%);
-  transform: translate(0, 100%);
-}
-
-:host(.core-transition.fade-out-up) {
-  -webkit-transform: translate(0, -100%);
-  transform: translate(0, -100%);
-}
-
-:host(.core-transition.fade-out-right) {
-  -webkit-transform: translate(100%, 0);
-  transform: translate(100%, 0);
-}
-
-:host(.core-transition.fade-out-left) {
-  -webkit-transform: translate(-100%, 0);
-  transform: translate(-100%, 0);
-}
-
-.toast-container {
-  overflow: hidden;
-}
-
-.toast-action {
-  padding-left: 24px;
-  cursor: pointer;
-  text-transform: uppercase;
-}
-</style>
-
-  <core-overlay id="overlay" autofocusdisabled="" autoclosedisabled="{{autoCloseDisabled}}" opened="{{opened}}" target="{{}}" transition="core-transition-bottom"></core-overlay>
-
-  <div class="toast-container" horizontal="" layout="">
-
-    <div class="toast-text" flex="">{{text}}</div>
-    
-    <div class="toast-text toast-action" on-tap="{{dismiss}}">
-      <content></content>
-    </div>
-
-  </div>
-  
-  <core-media-query query="max-width: {{responsiveWidth}}" querymatches="{{narrowMode}}"></core-media-query>
-
-</template>
-<script>
-
-  (function() {
-  
-    var currentToast;
-  
-    Polymer('paper-toast', {
-  
-      /**
-       * The text shows in a toast.
-       *
-       * @attribute text
-       * @type string
-       * @default ''
-       */
-      text: '',
-      
-      /**
-       * The duration in milliseconds to show the toast.
-       *
-       * @attribute duration
-       * @type number
-       * @default 3000
-       */
-      duration: 3000,
-      
-      /**
-       * Set opened to true to show the toast and to false to hide it.
-       *
-       * @attribute opened
-       * @type boolean
-       * @default false
-       */
-      opened: false,
-      
-      /**
-       * Min-width when the toast changes to narrow layout.  In narrow layout,
-       * the toast fits at the bottom of the screen when opened.
-       *
-       * @attribute responsiveWidth
-       * @type string
-       * @default '480px'
-       */
-      responsiveWidth: '480px',
-      
-      /**
-       * If true, the toast can't be swiped.
-       *
-       * @attribute swipeDisabled
-       * @type boolean
-       * @default false
-       */
-      swipeDisabled: false,
-      
-      /**
-       * By default, the toast will close automatically if the user taps
-       * outside it or presses the escape key. Disable this behavior by setting
-       * the `autoCloseDisabled` property to true.
-       *
-       * @attribute autoCloseDisabled
-       * @type boolean
-       * @default false
-       */
-      autoCloseDisabled: false,
-      
-      narrowMode: false,
-      
-      eventDelegates: {
-        trackstart: 'trackStart',
-        track: 'track',
-        trackend: 'trackEnd',
-        transitionend: 'transitionEnd'
-      },
-      
-      narrowModeChanged: function() {
-        this.classList.toggle('fit-bottom', this.narrowMode);
-        if (this.opened) {
-          this.$.overlay.resizeHandler();
-        }
-      },
-      
-      openedChanged: function() {
-        if (this.opened) {
-          this.dismissJob = this.job(this.dismissJob, this.dismiss, this.duration);
-        } else {
-          this.dismissJob && this.dismissJob.stop();
-          this.dismiss();
-        }
-      },
-      
-      /** 
-       * Toggle the opened state of the toast.
-       * @method toggle
-       */
-      toggle: function() {
-        this.opened = !this.opened;
-      },
-      
-      /** 
-       * Show the toast for the specified duration
-       * @method show
-       */
-      show: function() {
-        if (currentToast) {
-          currentToast.dismiss();
-        }
-        currentToast = this;
-        this.opened = true;
-      },
-      
-      /** 
-       * Dismiss the toast and hide it.
-       * @method dismiss
-       */
-      dismiss: function() {
-        if (this.dragging) {
-          this.shouldDismiss = true;
-        } else {
-          this.opened = false;
-          if (currentToast === this) {
-            currentToast = null;
-          }
-        }
-      },
-      
-      trackStart: function(e) {
-        if (!this.swipeDisabled) {
-          e.preventTap();
-          this.vertical = e.yDirection;
-          this.w = this.offsetWidth;
-          this.h = this.offsetHeight;
-          this.dragging = true;
-          this.classList.add('dragging');
-        }
-      },
-      
-      track: function(e) {
-        if (this.dragging) {
-          var s = this.style;
-          if (this.vertical) {
-            var y = e.dy;
-            s.opacity = (this.h - Math.abs(y)) / this.h;
-            s.transform = s.webkitTransform = 'translate3d(0, ' + y + 'px, 0)';
-          } else {
-            var x = e.dx;
-            s.opacity = (this.w - Math.abs(x)) / this.w;
-            s.transform = s.webkitTransform = 'translate3d(' + x + 'px, 0, 0)';
-          }
-        }
-      },
-      
-      trackEnd: function(e) {
-        if (this.dragging) {
-          this.classList.remove('dragging');
-          this.style.opacity = '';
-          this.style.transform = this.style.webkitTransform = '';
-          var cl = this.classList;
-          if (this.vertical) {
-            cl.toggle('fade-out-down', e.yDirection === 1 && e.dy > 0);
-            cl.toggle('fade-out-up', e.yDirection === -1 && e.dy < 0);
-          } else {
-            cl.toggle('fade-out-right', e.xDirection === 1 && e.dx > 0);
-            cl.toggle('fade-out-left', e.xDirection === -1 && e.dx < 0);
-          }
-          this.dragging = false;
-        }
-      },
-      
-      transitionEnd: function() {
-        var cl = this.classList;
-        if (cl.contains('fade-out-right') || cl.contains('fade-out-left') || 
-            cl.contains('fade-out-down') || cl.contains('fade-out-up')) {
-          this.dismiss();
-          cl.remove('fade-out-right', 'fade-out-left', 
-              'fade-out-down', 'fade-out-up');
-        } else if (this.shouldDismiss) {
-          this.dismiss();
-        }
-        this.shouldDismiss = false;
-      }
-  
-    });
-    
-  })();
-
-</script>
-</polymer-element>
-
-<polymer-element name="contact-form" assetpath="bower_components/contact-form/">
-	<template>
-		<style>
-			paper-input-decorator {
-				margin:auto;
-				max-width: 70%;
-				padding-left: 7%;
-				padding-right: 7%;
-			} 
-
-			paper-button[raised].colored {
-				background: #03a9f4;
-				color: #fff;
-				margin-bottom:15px;
-			}
-			
-			#sendButton::shadow #ripple {
-				color: blue;
-			}
-
-			#form {
-				background:#FFFFFF;
-				margin: 40px auto;
-				width:80%;
-				box-shadow: 3px 3px 10px #888888;
-				border-radius: 5px;
-			}
-
-			.custom /deep/ ::-webkit-input-placeholder {
-				color: #0f9d58;
-			}
-
-			.custom /deep/ ::-moz-placeholder {
-				color: #0f9d58;
-			}
-
-			.custom /deep/ :-ms-input-placeholder {
-				color: #0f9d58;
-			}
-
-			.custom /deep/ .label-text {
-				color: #039be5;
-			}
-
-			.custom /deep/ .error {
-				color: #e51c23;
-			}
-
-			.custom /deep/ .unfocused-underline {
-				background-color: #0f9d58;
-			}
-
-			.custom[focused] /deep/ .floated-label .label-text {
-				color: #039be5;
-			}
-
-			.custom /deep/ .focused-underline {
-				background-color: #039be5;
-			}
-
-			.custom {
-				color: #000000;
-			}
-			
-			paper-toast {
-				color: #ffc107;
-				bottom: 2%;
-				left: 0;
-				width: 100%;
-			}
-			
-		</style>
-		<form id="form" name="form" action="bower_components/contact-form/form.php" method="post" is="ajax-form">
-			<template is="auto-binding">
-				<paper-input-decorator floatinglabel="" label="First Name" name="firstname" maxlength="50" class="custom" validate="^[a-zA-Z]+$" error="First name can only contain letters " isinvalid="{{!$.firstNameValidation.validity.valid}}">
-					<input id="firstNameValidation" is="core-input" pattern="^[a-zA-Z \-'.,]{1,50}$">
-				</paper-input-decorator>
-			</template>
-			
-			<template is="auto-binding">
-				<paper-input-decorator floatinglabel="" label="Last Name" name="lastname" maxlength="50" class="custom" error="Last name can only contain letters" isinvalid="{{!$.lastNameValidation.validity.valid}}">
-					<input id="lastNameValidation" is="core-input" pattern="^[a-zA-Z \-'.,]{1,50}$">
-				</paper-input-decorator>
-			</template>
-
-            <br>
-
-            <template is="auto-binding">
-				<paper-input-decorator floatinglabel="" label="Email" name="email" maxlength="120" class="custom" error="Email is invalid" isinvalid="{{!$.emailValidation.validity.valid}}">
-					<input id="emailValidation" is="core-input" pattern="^([a-zA-Z0-9_\.\-!#$%&amp;'*\+\/=?^{}~])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,})+$">
-				</paper-input-decorator>
-			</template>
-
-			<br>
-			<paper-input-decorator floatinglabel="" label="Subject" name="subject" id="subject" maxlength="70" class="custom" error="Subject is required" isinvalid="{{!$.subjectValidation.validity.valid}}">
-				<input id="subjectValidation" is="core-input" pattern="^[a-zA-Z0-9 _!.?<>\+\-=@#$%^&amp;*();:,'&quot;\\\/{}]{10,80}$">  
-			</paper-input-decorator>
-            <br>
-			<paper-input-decorator floatinglabel="" label="Comments" class="custom">
-				<paper-autogrow-textarea>
-					<textarea></textarea>
-			    </paper-autogrow-textarea>
-			</paper-input-decorator>
-
-            <paper-button raised="" class="colored" name="send" id="sendButton" on-click="{{send}}">Send</paper-button>
-			<paper-toast id="toast" class="capsule" text="Message sent" duration="2000"></paper-toast>
-        </form>
-		
-	</template>
-	<script>
-		Polymer('contact-form', {
-			
-			send: function() {
-
-				this.$.toast.show()
-			}
-				
-		});
-
-	</script>
-</polymer-element>
-<polymer-element name="about-me" assetpath="bower_components/about-me/">
-	<template>
-		<style>
-			#contactinfo {
-				margin:auto;
-				max-width: 70%;
-				font-family: 'Roboto', sans-serif;
-			}
-		</style>
-
-			<div id="contactinfo">
-				<p>
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent 	dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, 	accumsan porttitor, facilisis luctus, metus
-				</p>
-
-				<p>
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent 	dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, 	accumsan porttitor, facilisis luctus, metus
-				</p>
-
-				<p>
-					Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent 	dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, 	accumsan porttitor, facilisis luctus, metus
-				</p>
-				
-			</div>
-	</template>
-	<script>
-		Polymer('about-me');
-	</script>
-</polymer-element>
-<polymer-element name="my-projects" assetpath="bower_components/my-projects/">
-	<template>
-		<style>
-			.projects {
-				margin: 50px auto;
-			}
-		</style>
-			<div class="projects">
-				<core-media-query query="max-width:640px" querymatches="{{phoneScreen}}"></core-media-query>
-				<div layout="" vertical?="{{phoneScreen}}" horizontal?="{{!phoneScreen}}&quot;">
-					<div auto-vertical="" flex=""><a href="projects/health-plan.html"><img src="images/health_plan.png" height="227" width="227"></a></div>
-					<div auto-vertical=""><a href="projects/blonyx-web.html"><img src="images/blonyx.png"></a></div>
-					<div auto-vertical="" flex=""><a href="projects/booklet-app.html"><img src="images/booklet.png" height="227" width="227"></a></div>
-				</div>
-				
-				<div layout="" vertical?="{{phoneScreen}}" horizontal?="{{!phoneScreen}}&quot;">
-					<div auto-vertical="" flex=""><a href="projects/gold-can.html"><img src="images/gold_can.jpg"></a></div>
-					<div auto-vertical=""><a href="projects/project-management.html"><img src="images/pms.png" height="227" width="227"></a></div>
-					<div auto-vertical="" flex=""><a href="projects/nxt-robot.html"><img src="images/nxt_robot.jpg"></a></div>
-				</div>
-				
-				<div layout="" vertical?="{{phoneScreen}}" horizontal?="{{!phoneScreen}}&quot;">
-					<div auto-vertical="" flex=""><a href="projects/downhill-federation.html"><img src="images/idf.jpg" height="227" width="227"></a></div>
-				</div>
-			</div>
-	</template>
-	<script>
-		Polymer('my-projects');
-	</script>
 </polymer-element>
 <polymer-element name="view-transition" extends="core-transition" assetpath="bower_components/polymer-viewpager/">
     <script>
@@ -6936,11 +4222,6 @@ paper-tabs paper-tab::shadow #ink {
 					<view-fragment name="<b>PROJECTS</b>">
 						<div class="pager-content">
 							<my-projects></my-projects>
-						</div>
-					</view-fragment>
-					<view-fragment name="<b>CONTACT</b>">
-						<div class="pager-content">
-							<contact-form></contact-form> 
 						</div>
 					</view-fragment>
 				</view-pager>
