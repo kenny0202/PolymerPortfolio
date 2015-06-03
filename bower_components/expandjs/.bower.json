@@ -1,0 +1,33 @@
+{
+  "name": "expandjs",
+  "license": "BSD-3-Clause",
+  "description": "This module is used to import the ExpandJS utilities.",
+  "homepage": "http://expandjs.com",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "expandjs",
+    "stdlib",
+    "nodejs",
+    "web app",
+    "javascript"
+  ],
+  "main": [
+    "expandjs.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "_release": "7e77b1d096",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "7e77b1d096037943d96bac6659d75e7fc884f5f1"
+  },
+  "_source": "git://github.com/ExpandJS/expandjs.git",
+  "_target": "*",
+  "_originalSource": "ExpandJS/expandjs"
+}

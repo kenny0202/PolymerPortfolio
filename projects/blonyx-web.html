@@ -9,6 +9,9 @@
 		<link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
 		<link rel="import" href="../bower_components/core-icons/core-icons.html">
 		<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+		<link rel="import" href="../bower_components/mat-paper/mat-paper.html">
+		<link rel="import" href="../bower_components/mat-item/mat-item.html">
+		<link rel="import" href="../bower_components/mat-list/mat-list.html">
 		<link rel="stylesheet" href="../css/base.css" shim-shadowdom="">	
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
@@ -23,6 +26,10 @@
 			.summary {
 				text-align: left;
 			}
+			.demo-container {
+				width: 120px;
+				margin: auto;
+			}
 		</style>
     </head>
     <body fullbleed layout vertical>
@@ -32,6 +39,33 @@
 				<span>Blonyx Web App</span>
 			</core-toolbar>
 			 <div class="container">
+				<div class="row">
+					<div class="col-xs-6 col-md-4">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="HTML" style="text-align:center"></mat-item>
+								<mat-item label="CSS" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="JS" style="text-align:center"></mat-item>
+								<mat-item label="Bootstrap" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="PHP" style="text-align:center"></mat-item>
+								<mat-item label="MySQL" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+				</div>
+				<br>
 				 <div class="summary">
 					<p>
 						Blonyx CrossFit Scheduler is a Web Application that I have developed along with my team(Le Hagen Daz Boiz) for our COMP 3900 Computer Projects course.
@@ -45,7 +79,7 @@
 						schedule a specific time and day to post the WoD to each of the CrossFit gym.
 					</p>
 					<p>
-						The application was developed using HTML5, CSS3, PHP, JavaScript, Ajax, MySQL, and BootStrap.
+						The application was developed using HTML5, CSS3, PHP, JavaScript, Ajax, MySQL, and Bootstrap.
 					</p>
 					<br>
 					<p style="text-align: center;">

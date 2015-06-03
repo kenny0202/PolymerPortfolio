@@ -1,6 +1,10 @@
 <link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
 <link rel="import" href="../chart-elements/chart-elements.html">
 <link rel="import" href="../core-media-query/core-media-query.html">
+<link rel="import" href="../mat-paper/mat-paper.html">
+<link rel="import" href="../mat-item/mat-item.html">
+<link rel="import" href="../mat-list/mat-list.html">
+<link rel="stylesheet" href="../../css/bootstrap.min.css">
 <polymer-element name="about-me">
 	<template>
 		<style>
@@ -9,7 +13,39 @@
 				max-width: 70%;
 				font-family: 'Roboto', sans-serif;
 				text-align: left;
+				margin-bottom:60px;
 			}
+			.demo-container {
+                margin: auto;
+                max-width: 320px;
+            }
+			
+			.legend { 
+				list-style: none;
+				margin-right: 50px;
+			}
+			.legend span {
+				border: 1px solid #ccc;
+				float: left;
+				width: 12px;
+				height: 12px; 
+				margin: 2px;
+			}
+			
+			.legend .android { 
+				background-color: #FF3D00; 
+			}
+			
+			.legend .asp {
+				background-color: #00B0FF;
+			}
+			.legend .jsf {
+				background-color: #00E676; 
+			}
+			.legend .boot { 
+				background-color: #D500F9; 
+			}
+
 		</style>
 
 		<div id="contactinfo">
@@ -19,7 +55,10 @@
 			<p>
 				I have created this portfolio to share the projects that I have been working on when I began to learn about software development. 
 			</p>
-			
+			<p>
+				If you have any questions or just wanted to say hi feel free to contact me at <a href="mailto:info@kennyghui.com">info@kennyghui.com</a> 
+			</p>
+			 
 			<core-media-query query="max-width:640px" queryMatches="{{phoneScreen}}"></core-media-query>
 				<div layout vertical?="{{phoneScreen}}" horizontal?={{!phoneScreen}}">
 					<div auto-vertical flex>
@@ -28,7 +67,7 @@
 								width="250"
 								height="200"
 								labels="['C','C++','C#','Java','SQL']",
-								values="[ [70,75,80,80,90] ]"
+								values="[ [70,75,75,80,90] ]"
 								colors="['33,150,243']">
 							</chart-bar>
 							<br>
@@ -53,12 +92,38 @@
 							<chart-polar-area
 								width="250"
 								height="200"
-								values="[75, 100, 80, 70]">
+								values="[70, 100, 80, 70]" class="demo-container">
 							</chart-polar-area>
 							<br>
 							Development Frameworks
 						</p>
 					</div>
+					<ul class="legend">
+						<li><span class="android"></span>Android</li>
+						<li><span class="asp"></span>ASP.NET MVC</li>
+						<li><span class="jsf"></span>JSF</li>
+						<li><span class="boot"></span>Bootstrap</li>
+					</ul>
+				</div>
+				<p style="text-align:center">Other technologies I have worked with</p>
+			<div layout vertical?="{{phoneScreen}}" horizontal?={{!phoneScreen}}">
+				<div auto-vertical flex>
+					<mat-paper class="demo-container" z="1">
+						<mat-list label="Subheader">
+							<mat-item label="AngularJS"></mat-item>
+							<mat-item label="Polymer"></mat-item>
+							<mat-item label="Azure"></mat-item>
+						</mat-list>
+					</mat-paper>
+				</div>
+				<div auto-vertical flex>
+					<mat-paper class="demo-container" z="1">
+						<mat-list label="Subheader">
+							<mat-item label="EJB"></mat-item>
+							<mat-item label="Socket.io"></mat-item>
+							<mat-item label="PHP"></mat-item>
+						</mat-list>
+					</mat-paper>
 				</div>
 			</div>
 		</div>

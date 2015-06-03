@@ -1,0 +1,34 @@
+{
+  "name": "xp-list",
+  "license": "BSD-3-Clause",
+  "version": "0.8.12",
+  "description": "A custom element used to create a list of items",
+  "homepage": "http://expandjs.com/elements/xp-list",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "xp-list.html",
+    "xp-sublist.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "xp-collapse": "ExpandJS/xp-collapse",
+    "xp-master-state": "ExpandJS/xp-master-state",
+    "xp-referral": "ExpandJS/xp-referral",
+    "xp-selected-state": "ExpandJS/xp-selected-state",
+    "xp-slave-state": "ExpandJS/xp-slave-state",
+    "polymer": "Polymer/polymer#^0.5"
+  }
+}

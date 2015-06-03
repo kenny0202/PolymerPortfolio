@@ -1,0 +1,448 @@
+<!--
+@license
+Copyright (c) 2015 The ExpandJS authors. All rights reserved.
+This code may only be used under the BSD style license found at https://expandjs.github.io/LICENSE.txt
+The complete set of authors may be found at https://expandjs.github.io/AUTHORS.txt
+The complete set of contributors may be found at https://expandjs.github.io/CONTRIBUTORS.txt
+-->
+
+<!--
+This element is used to display a list of items.
+If can be used in conjunction with xp-sublist.
+
+@element xp-list
+@description A custom element used to create a list of items
+@keywords web app, html5, expandjs, web-components
+@group navigation
+@homepage http://expandjs.com/elements/xp-list
+
+@mixin xp-referral http://expandjs.com/elements/xp-referral
+
+@dependency polymer Polymer/polymer#^0.5
+@dependency expandjs ExpandJS/expandjs
+@dependency xp-master-state ExpandJS/xp-master-state
+@dependency xp-referral ExpandJS/xp-referral
+@dependency xp-selected-state ExpandJS/xp-selected-state
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../expandjs/expandjs.html">
+<link rel="import" href="../xp-master-state/xp-master-state.html">
+<link rel="import" href="../xp-referral/xp-referral.html">
+<link rel="import" href="../xp-selected-state/xp-selected-state.html">
+
+<polymer-element name="xp-list" attributes="activateEvent autoCollapseDisabled context defaultSelected indexAttribute items itemSelector priorSelected multi selected selectedAttribute selection switchable target">
+
+    <template>
+        <style>
+            :host {
+                display: block;
+                overflow: visible;
+            }
+        </style>
+        <template context="{{}}" is="xp-master-state" id="xpMasterState" slaves="{{sublists}}" slaveTag="xp-sublist"></template>
+        <template context="{{context || self}}" is="xp-selected-state" id="xpSelectedState" activateEvent="{{activateEvent}}"
+                  deep="{{true}}" defaultSelected="{{defaultSelected}}" indexAttribute="{{indexAttribute}}"
+                  items="{{items}}" itemSelector="{{itemSelector}}" priorSelected="{{priorSelected}}"
+                  multi="{{multi}}" selected="{{selected}}" selectedAttribute="{{selectedAttribute}}"
+                  selection="{{selection}}" switchable="{{switchable}}" target="{{target}}"></template>
+        <content id="content"></content>
+    </template>
+
+    <script>
+        XPElement({
+
+            // ELEMENT
+            is: 'xp-list',
+
+            // MIXINS
+            mixins: ['xp-referral'],
+
+            /*********************************************************************/
+
+            /**
+             * Fired when the items change.
+             *
+             * @event xp-items-change
+             * @param {Element} firer
+             * @param {Array} items
+             * @bubbles
+             */
+
+            /**
+             * Fired on item selection.
+             *
+             * @event xp-select
+             * @param {Element} firer
+             * @param {Element} item
+             * @param {number} index
+             * @param {boolean} isMulti
+             * @param {boolean} isSelected
+             * @param {boolean} isSwitchable
+             * @bubbles
+             * @cancelable
+             */
+
+            /**
+             * Fired when the selection changes.
+             *
+             * @event xp-selection-change
+             * @param {Element} firer
+             * @param {Array | Element} selection
+             * @param {Array | Element} selected
+             * @param {boolean} isMulti
+             * @param {boolean} isSwitchable
+             * @bubbles
+             */
+
+            /*********************************************************************/
+
+            /**
+             * Finds an item's index.
+             *
+             * @method findIndex
+             * @param {Element | Function | number | string} identity
+             * @returns {number | string | undefined}
+             */
+            findIndex: function (identity) {
+                return this.$.xpSelectedState.findIndex(identity);
+            },
+
+            /**
+             * Finds an item.
+             *
+             * @method findItem
+             * @param {Element | Function | number | string} identity
+             * @returns {Element | undefined}
+             */
+            findItem: function (identity) {
+                return this.$.xpSelectedState.findItem(identity);
+            },
+
+            /**
+             * Finds items filtered by predicate.
+             *
+             * @method findItems
+             * @param {Function} [predicate]
+             * @returns {Array}
+             */
+            findItems: function (predicate) {
+                return this.$.xpSelectedState.findItems(predicate);
+            },
+
+            /**
+             * Finds an item's index, iterating from right to left.
+             *
+             * @method findLastIndex
+             * @param {Element | Function | number | string} identity
+             * @returns {number | string | undefined}
+             */
+            findLastIndex: function (identity) {
+                return this.$.xpSelectedState.findLastIndex(identity);
+            },
+
+            /**
+             * Finds an item, iterating from right to left.
+             *
+             * @method findLastItem
+             * @param {Element | Function | number | string} identity
+             * @returns {Element | undefined}
+             */
+            findLastItem: function (identity) {
+                return this.$.xpSelectedState.findLastItem(identity);
+            },
+
+            /**
+             * Checks if an item is selectable.
+             *
+             * @method isSelectable
+             * @param {Element | Function | number | string} identity
+             * @returns {boolean}
+             */
+            isSelectable: function (identity) {
+                return this.$.xpSelectedState.isSelectable(identity);
+            },
+
+            /**
+             * Checks if an item is selected.
+             *
+             * @method isSelected
+             * @param {Element | Function | number | string} identity
+             * @returns {boolean}
+             */
+            isSelected: function (identity) {
+                return this.$.xpSelectedState.isSelected(identity);
+            },
+
+            /**
+             * Checks if an item is unselectable.
+             *
+             * @method isUnselectable
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [force = false]
+             * @returns {boolean}
+             */
+            isUnselectable: function (identity, force) {
+                return this.$.xpSelectedState.isUnselectable(identity, force);
+            },
+
+            /**
+             * Resets the selection.
+             *
+             * @method reset
+             * @returns {Element}
+             */
+            reset: function () {
+                var self = this;
+                self.$.xpSelectedState.reset();
+                return self;
+            },
+
+            /**
+             * Selects an item.
+             *
+             * @method select
+             * @param {Element | Function | number | string} identity
+             * @returns {Element | undefined}
+             */
+            select: function (identity) {
+                return this.$.xpSelectedState.select(identity);
+            },
+
+            /**
+             * Selects all items.
+             *
+             * @method selectAll
+             * @param {Function} [predicate]
+             * @returns {Array}
+             */
+            selectAll: function (predicate) {
+                return this.$.xpSelectedState.selectAll(predicate);
+            },
+
+            /**
+             * Selects the prior selected item.
+             *
+             * @method selectPriorSelected
+             * @returns {Element | undefined}
+             */
+            selectPriorSelected: function () {
+                return this.$.xpSelectedState.selectPriorSelected();
+            },
+
+            /**
+             * Selects the next item.
+             *
+             * @method selectNext
+             * @returns {Element | undefined}
+             */
+            selectNext: function () {
+                return this.$.xpSelectedState.selectNext();
+            },
+
+            /**
+             * Selects the previous item.
+             *
+             * @method selectPrevious
+             * @returns {Element | undefined}
+             */
+            selectPrevious: function () {
+                return this.$.xpSelectedState.selectPrevious();
+            },
+
+            /**
+             * Toggles active state on an item.
+             *
+             * @method switch
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [force = false]
+             * @returns {Element | undefined}
+             */
+            switch: function (identity, force) {
+                return this.$.xpSelectedState.switch(identity, force);
+            },
+
+            /**
+             * Toggles active state on all items.
+             *
+             * @method switchAll
+             * @param {Function} [predicate]
+             * @param {boolean} [force = false]
+             * @returns {Array}
+             */
+            switchAll: function (predicate, force) {
+                return this.$.xpSelectedState.switchAll(predicate, force);
+            },
+
+            /**
+             * Unselects an item.
+             *
+             * @method unselect
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [force = false]
+             * @returns {Element | undefined}
+             */
+            unselect: function (identity, force) {
+                return this.$.xpSelectedState.unselect(identity, force);
+            },
+
+            /**
+             * Unselects all items.
+             *
+             * @method unselectAll
+             * @param {Function} [predicate]
+             * @param {boolean} [force = false]
+             * @returns {Array}
+             */
+            unselectAll: function (predicate, force) {
+                return this.$.xpSelectedState.unselectAll(predicate, force);
+            },
+
+            /*********************************************************************/
+
+            // PUBLISH
+            publish: {
+
+                /**
+                 * The event on which the selection fires.
+                 *
+                 * @attribute activateEvent
+                 * @type string
+                 * @default "click"
+                 */
+                activateEvent: {reflect: true, value: 'click'},
+
+                /**
+                 * If set to true, a sublist expansion wont collapse the siblings.
+                 *
+                 * @attribute autoCollapseDisabled
+                 * @type boolean
+                 * @default false
+                 */
+                autoCollapseDisabled: {reflect: true, value: false},
+
+                /**
+                 * The context element.
+                 *
+                 * @attribute context
+                 * @type Element
+                 */
+                context: {reflect: false, value: null},
+
+                /**
+                 * The index of the item to select by default.
+                 *
+                 * @attribute defaultSelected
+                 * @type number | string
+                 */
+                defaultSelected: {reflect: false, value: null},
+
+                /**
+                 * The attribute used as index.
+                 *
+                 * @attribute indexAttribute
+                 * @type string
+                 * @default ""
+                 */
+                indexAttribute: {reflect: true, value: ''},
+
+                /**
+                 * The selectable items.
+                 *
+                 * @attribute items
+                 * @type Array
+                 */
+                items: {reflect: false, value: null},
+
+                /**
+                 * The selector used to recognize selectable items.
+                 *
+                 * @attribute itemSelector
+                 * @type string
+                 * @default "[selectable]"
+                 */
+                itemSelector: {reflect: true, value: '[selectable]'},
+
+                /**
+                 * If set to true, multi selection is allowed.
+                 *
+                 * @attribute multi
+                 * @type boolean
+                 * @default false
+                 * @readonly
+                 */
+                multi: {reflect: true, value: false},
+
+                /**
+                 * The prior selected item's index.
+                 *
+                 * @attribute priorSelected
+                 * @type number | string
+                 * @readonly
+                 */
+                priorSelected: {reflect: false, value: null},
+
+                /**
+                 * The selected item's index.
+                 *
+                 * @attribute selected
+                 * @type Array | number | string
+                 */
+                selected: {reflect: false, value: null},
+
+                /**
+                 * The attribute set on selection.
+                 *
+                 * @attribute selectedAttribute
+                 * @type string
+                 * @default "active"
+                 */
+                selectedAttribute: {reflect: true, value: 'active'},
+
+                /**
+                 * The selected item.
+                 *
+                 * @attribute selection
+                 * @type Element
+                 * @readonly
+                 */
+                selection: {reflect: false, value: null},
+
+                /**
+                 * The slave sublists.
+                 *
+                 * @attribute sublists
+                 * @type Array
+                 * @readonly
+                 */
+                sublists: {reflect: false, value: null},
+
+                /**
+                 * If set to true, the unselection is allowed even if not multi.
+                 *
+                 * @attribute switchable
+                 * @type boolean
+                 * @default false
+                 */
+                switchable: {reflect: true, value: false},
+
+                /**
+                 * The `id` of the targeted element or the element itself.
+                 *
+                 * @attribute target
+                 * @type Element | string
+                 */
+                target: {reflect: false, value: null}
+            },
+
+            /*********************************************************************/
+
+            // OBSERVER
+            selectionChanged: function (pre, post) {
+                var self = this, superlist = post && !self.multi && XP.findParentElement(post, 'xp-sublist[collapsible]', self);
+                if (superlist) { superlist.expand(); }
+            }
+        });
+    </script>
+
+</polymer-element>

@@ -9,6 +9,9 @@
 		<link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
 		<link rel="import" href="../bower_components/core-icons/core-icons.html">
 		<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+		<link rel="import" href="../bower_components/mat-paper/mat-paper.html">
+		<link rel="import" href="../bower_components/mat-item/mat-item.html">
+		<link rel="import" href="../bower_components/mat-list/mat-list.html">
 		<link rel="stylesheet" href="../css/base.css" shim-shadowdom="">	
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
@@ -23,35 +26,59 @@
 			.summary {
 				text-align: left;
 			}
+			.demo-container {
+				width: 100px;
+				margin: auto;
+			}
 		</style>
     </head>
     <body fullbleed layout vertical>
-			<core-header-panel flex>
-				<core-toolbar>
-					<paper-icon-button id="navicon" icon="arrow-back" onclick="window.history.back();"></paper-icon-button>
-					<span>Simple Health Plan</span>
-				</core-toolbar>
-				<div class="container">
-					<div class="summary">
-						<p>
-							Simple Health Plan is an Android Application that I have developed along with my team Injecting Beans for Introduction to Android Programming course. Our project was to build an application based on a theme called "LifeStyle". We came up with some common ideas such as an exercise planner, a recipe cookbook, and an event planner. We decided to combine the ideas together which allows the user to create their exercises and add them to a workout program or schedule them on a specific date, and also you are able to add recipes and instructions on how to cook the recipe and also plan a meal program. As a student and a developer it may be hard to maintain a healthy lifestyle so we created this application targeting people who want to begin getting back into shape and eating healthy. The application was developed in Java using SQLite as the database system as well as open source libraries.
-						</p>
-						<br>
-						<p>
-							The application on google play can be found <a href="https://play.google.com/store/apps/details?id=com.log.health.healthplanner&hl=en">Here!</a>
-						</p>
-						<br>
-						<div class="row">
-							<div class="col-md-6"><img src="../images/healthplan/healthplan1.png" class="img-responsive" width="540px" height="960px"></div>
-							<div class="col-md-6"><img src="../images/healthplan/healthplan2.png" class="img-responsive" width="540px" height="960px"></div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-md-6"><img src="../images/healthplan/healthplan3.png"  class="img-responsive" width="540px" height="960px"></div>
-							<div class="col-md-6"><img src="../images/healthplan/healthplan4.png" class="img-responsive" width="540px" height="960px"></div>
-						</div>
+		<core-header-panel flex>
+			<core-toolbar>
+				<paper-icon-button id="navicon" icon="arrow-back" onclick="window.history.back();"></paper-icon-button>
+				<span>Simple Health Plan</span>
+			</core-toolbar>
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-6 ">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="Java" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+					<div class="col-xs-6">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="SQLite" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+					
+				</div>
+				<br>
+				<div class="summary">
+					<p>
+						Simple Health Plan is an Android Application that I have developed along with my team Injecting Beans for the Introduction to Android Programming course. Our project was to build an application based on a theme called "LifeStyle". We came up with some common ideas such as an exercise planner, a recipe cookbook, and an event planner. We decided to combine the ideas together which allows the user to create their exercises and add them to a workout program or schedule them on a specific date, and also you are able to add recipes and instructions on how to cook the recipe and also plan a meal program. As a student and a developer it may be hard to maintain a healthy lifestyle so we created this application targeting people who want to begin getting back into shape and eating healthy.
+					</p>
+					<p>
+						The application was developed in Java using SQLite as the database system as well as open source libraries.
+					</p>
+					<p>
+						The application on google play can be found <a href="https://play.google.com/store/apps/details?id=com.log.health.healthplanner&hl=en">Here!</a>
+					</p>
+					<br>
+					<div class="row">
+						<div class="col-md-6"><img src="../images/healthplan/healthplan1.png" class="img-responsive" width="540px" height="960px"></div>
+						<div class="col-md-6"><img src="../images/healthplan/healthplan2.png" class="img-responsive" width="540px" height="960px"></div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-md-6"><img src="../images/healthplan/healthplan3.png"  class="img-responsive" width="540px" height="960px"></div>
+						<div class="col-md-6"><img src="../images/healthplan/healthplan4.png" class="img-responsive" width="540px" height="960px"></div>
 					</div>
 				</div>
-			</core-header-panel>
+			</div>
+		</core-header-panel>
     </body>
 </html>

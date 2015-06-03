@@ -1,0 +1,203 @@
+<!--
+@license
+Copyright (c) 2015 The ExpandJS authors. All rights reserved.
+This code may only be used under the BSD style license found at https://expandjs.github.io/LICENSE.txt
+The complete set of authors may be found at https://expandjs.github.io/AUTHORS.txt
+The complete set of contributors may be found at https://expandjs.github.io/CONTRIBUTORS.txt
+-->
+
+<!--
+This element is used to display a material menu button.
+
+@element mat-menu-button
+@description A custom element used to display a Material Design menu button
+@keywords material design, material button, material menu, web app, html5, expandjs, web-components
+@group contents
+@homepage http://expandjs.com/elements/mat-menu-button
+
+@mixin xp-targeter http://expandjs.com/elements/xp-targeter
+
+@dependency polymer Polymer/polymer#^0.5
+@dependency expandjs ExpandJS/expandjs
+@dependency mat-icon-button ExpandJS/mat-icon-button
+@dependency xp-targeter ExpandJS/xp-targeter
+
+@devDependency mat-demo ExpandJS/mat-demo
+@devDependency mat-menu ExpandJS/mat-menu
+@devDependency mat-option ExpandJS/mat-option
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../expandjs/expandjs.html">
+<link rel="import" href="../mat-icon-button/mat-icon-button.html">
+<link rel="import" href="../xp-targeter/xp-targeter.html">
+
+<polymer-element name="mat-menu-button" attributes="color data disabled focused icon iconSrc pressed raster target">
+
+    <template>
+        <style>
+            :host {
+                display: inline-block;
+                margin: 4px;
+                overflow: visible;
+            }
+
+            :host #matMenuButtonAdaptee {
+                display: block;
+                margin: 0 -4px;
+            }
+        </style>
+        <mat-icon-button id="matMenuButtonAdaptee" color="{{color}}" data="{{data}}" disabled="{{disabled}}"
+                         focused="{{focused}}" icon="{{icon || 'navigation:more-vert'}}" iconSrc="{{iconSrc}}"
+                         pressed="{{pressed}}" raster="{{raster}}" target="{{target}}"></mat-icon-button>
+    </template>
+
+    <script>
+        XPElement({
+
+            // ELEMENT
+            is: 'mat-menu-button',
+
+            // MIXINS
+            mixins: ['xp-targeter'],
+
+            /*********************************************************************/
+
+            /**
+             * Hides the menu.
+             *
+             * @method hide
+             * @returns {Element}
+             */
+            hide: function () {
+                var self = this, target = self.findTarget();
+                if (target && target.hide) { target.hide(); }
+                return self;
+            },
+
+            /**
+             * Shows the menu.
+             *
+             * @method show
+             * @returns {Element}
+             */
+            show: function () {
+                var self = this, target = self.findTarget();
+                if (target && target.show) { target.show(self, self.data); }
+                return self;
+            },
+
+            /**
+             * Toggles the menu.
+             *
+             * @method toggle
+             * @returns {Element}
+             */
+            toggle: function () {
+                var self = this, target = self.findTarget();
+                if (target && target.toggle) { target.toggle(self, self.data); }
+                return self;
+            },
+
+            /*********************************************************************/
+
+            // DELEGATES
+            eventDelegates: {
+                'xp-activate': 'handleActivate'
+            },
+
+            // PUBLISH
+            publish: {
+
+                /**
+                 * The ink's color.
+                 *
+                 * @attribute color
+                 * @type string
+                 * @default ""
+                 */
+                color: {reflect: true, value: ''},
+
+                /**
+                 * The element's data.
+                 *
+                 * @attribute data
+                 * @type *
+                 */
+                data: {reflect: false, value: null},
+
+                /**
+                 * If set to true, the element is disabled.
+                 *
+                 * @attribute disabled
+                 * @type boolean
+                 * @default false
+                 */
+                disabled: {reflect: true, value: false},
+
+                /**
+                 * If set to true, the element is focused.
+                 *
+                 * @attribute focused
+                 * @type boolean
+                 * @default false
+                 */
+                focused: {reflect: true, value: false},
+
+                /**
+                 * The button's icon.
+                 *
+                 * @attribute icon
+                 * @type string
+                 * @default ""
+                 */
+                icon: {reflect: true, value: ''},
+
+                /**
+                 * The button's icon's src.
+                 *
+                 * @attribute iconSrc
+                 * @type string
+                 * @default ""
+                 */
+                iconSrc: {reflect: true, value: ''},
+
+                /**
+                 * If set to true, the element is pressed.
+                 *
+                 * @attribute pressed
+                 * @type boolean
+                 * @default false
+                 * @readonly
+                 */
+                pressed: {reflect: true, value: false},
+
+                /**
+                 * If set to true, the icon is a raster one instead of svg.
+                 *
+                 * @attribute raster
+                 * @type boolean
+                 * @default false
+                 */
+                raster: {reflect: true, value: false},
+
+                /**
+                 * The `id` of the targeted element or the element itself.
+                 *
+                 * @attribute target
+                 * @type Element | string
+                 */
+                target: {reflect: false, value: null}
+            },
+
+            /*********************************************************************/
+
+            // HANDLER
+            handleActivate: function (event) {
+                var self = this;
+                XP.delay(function () { return !event.defaultPrevented && self.show(); });
+            }
+        });
+    </script>
+
+</polymer-element>

@@ -9,6 +9,9 @@
 		<link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
 		<link rel="import" href="../bower_components/core-icons/core-icons.html">
 		<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+		<link rel="import" href="../bower_components/mat-paper/mat-paper.html">
+		<link rel="import" href="../bower_components/mat-item/mat-item.html">
+		<link rel="import" href="../bower_components/mat-list/mat-list.html">
 		<link rel="stylesheet" href="../css/base.css" shim-shadowdom="">	
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
 		<link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
@@ -23,28 +26,67 @@
 			.summary {
 				text-align: left;
 			}
+			.demo-container {
+				width: 120px;
+				margin: auto;
+			}
 		</style>
     </head>	
     <body fullbleed layout vertical>
-			<core-header-panel flex>
-				<core-toolbar>
-					<paper-icon-button id="navicon" icon="arrow-back" onclick="window.history.back();"></paper-icon-button>
-					<span>Project Management System</span>
-				</core-toolbar>
-				<div class="container">	
-					<div class="summary">
-						<p>
-							The Project Management System is a web application that I have developed along with my team(Private Constructors) for our COMP 4911 Managing Information System Development course. 
-						</p>
-						<p>
-							The application was developed using JSF, EJB, Java, JPA, MySQL, PrimeFaces, and BootStrap.
-						</p>
-						<img src="../images/pms/MainMenu.png" class="img-responsive" width="1920px" height="1080px"><br>
-						<img src="../images/pms/MonthlyReport.png" class="img-responsive" width="1920px" height="1080px"><br>
-						<img src="../images/pms/Projects.png"  class="img-responsive" width="1920px" height="1080px"><br>
-						<img src="../images/pms/Timesheet.png" class="img-responsive" width="1920px" height="1080px">
+		<core-header-panel flex>
+			<core-toolbar>
+				<paper-icon-button id="navicon" icon="arrow-back" onclick="window.history.back();"></paper-icon-button>
+				<span>Project Management System</span>
+			</core-toolbar>
+			<div class="container">	
+				<div class="row">
+					<div class="col-xs-6 col-md-4">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="JSF" style="text-align:center"></mat-item>
+								<mat-item label="EJB" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="JPA" style="text-align:center"></mat-item>
+								<mat-item label="MySQL" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+					<div class="col-xs-6 col-md-4">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="PrimeFaces" style="text-align:center"></mat-item>
+								<mat-item label="Bootstrap" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
 					</div>
 				</div>
-			</core-header-panel>
+				<br>
+				<div class="summary">
+					<p>
+						The Project Management System is an enterprise level web application that I have developed along with my team(Private Constructors) for our COMP 4911 Managing Information System Development course. The project management system was built using enterprise level technology to provide high level of security and concurrency. It allowed project managers to manage projects and manage employees.
+					</p>
+					<p>
+						As a project manager you were also able to generate reports on the current project to allow billing to clients. As a regular employee you are only allowed to enter in time sheets for specific projects that you belong to. Other roles were also involved in this project such as a supervisor who oversees the project as a whole and can assign and remove project managers from a project and a human resource role who can assign employees to a project and approve time sheets that is submitted for approval.
+					</p>
+					<p>
+						The application was developed using JSF, EJB, Java, JPA, MySQL, PrimeFaces, and Bootstrap.
+					</p>
+					<br>
+					<p style="text-align: center;">Admin Menu</p>
+					<img src="../images/pms/MainMenu.png" class="img-responsive" width="1920px" height="1080px"><br>
+					<p style="text-align: center;">Project Reports</p>
+					<img src="../images/pms/MonthlyReport.png" class="img-responsive" width="1920px" height="1080px"><br>
+					<p style="text-align: center;">Project Management Menu</p>
+					<img src="../images/pms/Projects.png"  class="img-responsive" width="1920px" height="1080px"><br>
+					<p style="text-align: center;">Employee Time Sheet</p>
+					<img src="../images/pms/Timesheet.png" class="img-responsive" width="1920px" height="1080px">
+				</div>
+			</div>
+		</core-header-panel>
     </body>
 </html>

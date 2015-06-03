@@ -1,0 +1,40 @@
+{
+  "name": "mat-ink",
+  "license": "BSD-3-Clause",
+  "description": "A custom element used to decorate content as Material Design ink",
+  "homepage": "http://expandjs.com/elements/mat-ink",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "material design",
+    "material ink",
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "mat-ink.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "mat-palette": "ExpandJS/mat-palette",
+    "xp-slave-state": "ExpandJS/xp-slave-state",
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "_release": "6b8f6c2296",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "6b8f6c2296018e639987db3fa090d1d8229ea35b"
+  },
+  "_source": "git://github.com/ExpandJS/mat-ink.git",
+  "_target": "*",
+  "_originalSource": "ExpandJS/mat-ink"
+}

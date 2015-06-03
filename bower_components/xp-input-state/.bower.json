@@ -1,0 +1,36 @@
+{
+  "name": "xp-input-state",
+  "license": "BSD-3-Clause",
+  "description": "A custom element used to add input capabilities to a context element",
+  "homepage": "http://expandjs.com/elements/xp-input-state",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "xp-input-state.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "_release": "de462650a0",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "de462650a094f938187c0a07fb5820087c3578e0"
+  },
+  "_source": "git://github.com/ExpandJS/xp-input-state.git",
+  "_target": "*",
+  "_originalSource": "ExpandJS/xp-input-state"
+}

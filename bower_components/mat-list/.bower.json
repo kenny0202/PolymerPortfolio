@@ -1,0 +1,54 @@
+{
+  "name": "mat-list",
+  "license": "BSD-3-Clause",
+  "description": "A custom element used to display a Material Design list",
+  "homepage": "http://expandjs.com/elements/mat-list",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "material design",
+    "material list",
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "mat-list.html",
+    "mat-sublist.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "mat-divider": "ExpandJS/mat-divider",
+    "mat-icon": "ExpandJS/mat-icon",
+    "mat-ink": "ExpandJS/mat-ink",
+    "mat-item": "ExpandJS/mat-item",
+    "mat-subheader": "ExpandJS/mat-subheader",
+    "xp-list": "ExpandJS/xp-list",
+    "xp-master-state": "ExpandJS/xp-master-state",
+    "xp-slave-state": "ExpandJS/xp-slave-state",
+    "xp-targeter": "ExpandJS/xp-targeter",
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "devDependencies": {
+    "mat-demo": "ExpandJS/mat-demo",
+    "mat-item": "ExpandJS/mat-item",
+    "mat-paper": "ExpandJS/mat-paper"
+  },
+  "_release": "336ed62169",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "336ed6216941e6b000f28c724329a6cdad79a88b"
+  },
+  "_source": "git://github.com/expandjs/mat-list.git",
+  "_target": "master",
+  "_originalSource": "expandjs/mat-list",
+  "_direct": true
+}

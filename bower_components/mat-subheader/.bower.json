@@ -1,0 +1,39 @@
+{
+  "name": "mat-subheader",
+  "license": "BSD-3-Clause",
+  "description": "A custom element used to display a Material Design subheader",
+  "homepage": "http://expandjs.com/elements/mat-subheader",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "material design",
+    "material subheader",
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "mat-subheader.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "mat-ink": "ExpandJS/mat-ink",
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "_release": "e9bc81d53b",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "e9bc81d53b1cb026efe8825258a2c90552334969"
+  },
+  "_source": "git://github.com/ExpandJS/mat-subheader.git",
+  "_target": "*",
+  "_originalSource": "ExpandJS/mat-subheader"
+}

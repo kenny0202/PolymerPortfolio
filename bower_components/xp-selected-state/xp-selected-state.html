@@ -1,0 +1,692 @@
+<!--
+@license
+Copyright (c) 2015 The ExpandJS authors. All rights reserved.
+This code may only be used under the BSD style license found at https://expandjs.github.io/LICENSE.txt
+The complete set of authors may be found at https://expandjs.github.io/AUTHORS.txt
+The complete set of contributors may be found at https://expandjs.github.io/CONTRIBUTORS.txt
+-->
+
+<!--
+This element is used to add select capabilities on the context element.
+
+@element xp-selected-state
+@description A custom element used to add selection capabilities to a context element
+@keywords web app, html5, expandjs, web-components
+@group states
+@homepage http://expandjs.com/elements/xp-selected-state
+
+@extends template
+@mixin xp-targeter http://expandjs.com/elements/xp-targeter
+
+@dependency polymer Polymer/polymer#^0.5
+@dependency expandjs ExpandJS/expandjs
+@dependency xp-targeter ExpandJS/xp-targeter
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../expandjs/expandjs.html">
+<link rel="import" href="../xp-targeter/xp-targeter.html">
+
+<polymer-element name="xp-selected-state" extends="template" attributes="activateEvent context deep defaultSelected indexAttribute items itemSelector multi selected selectedAttribute selection switchable target">
+
+    <script>
+        XPElement({
+
+            // ELEMENT
+            is: 'xp-selected-state',
+
+            // MIXINS
+            mixins: ['xp-targeter'],
+
+            /*********************************************************************/
+
+            /**
+             * Fired when the items change.
+             *
+             * @event xp-items-change
+             * @param {Element} firer
+             * @param {Array} items
+             * @bubbles
+             */
+
+            /**
+             * Fired on item selection.
+             *
+             * @event xp-select
+             * @param {Element} firer
+             * @param {Element} item
+             * @param {number} index
+             * @param {boolean} isMulti
+             * @param {boolean} isSelected
+             * @param {boolean} isSwitchable
+             * @bubbles
+             * @cancelable
+             */
+
+            /**
+             * Fired when the selection changes.
+             *
+             * @event xp-selection-change
+             * @param {Element} firer
+             * @param {Array | Element} selection
+             * @param {Array | Element} selected
+             * @param {boolean} isMulti
+             * @param {boolean} isSwitchable
+             * @bubbles
+             */
+
+            /*********************************************************************/
+
+            /**
+             * Finds an item's index.
+             *
+             * @method findIndex
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [safe = false]
+             * @returns {number | string | undefined}
+             */
+            findIndex: function (identity, safe) {
+                var self = this, item = self.findItem(identity, safe);
+                if (item) { return self.indexAttribute ? XP.getAttribute(item, self.indexAttribute) : XP.indexOf(self.items, item); }
+            },
+
+            /**
+             * Finds an item.
+             *
+             * @method findItem
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [safe = false]
+             * @returns {Element | undefined}
+             */
+            findItem: function (identity, safe) {
+                return safe ? identity : XP.find(this.items, this.toDOMIdentity(identity));
+            },
+
+            /**
+             * Finds items filtered by predicate.
+             *
+             * @method findItems
+             * @param {Function} [predicate]
+             * @returns {Array}
+             */
+            findItems: function (predicate) {
+                return XP.filter(this.items, this.toDOMPredicate(predicate));
+            },
+
+            /**
+             * Finds an item's index, iterating from right to left.
+             *
+             * @method findLastIndex
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [safe = false]
+             * @returns {number | string | undefined}
+             */
+            findLastIndex: function (identity, safe) {
+                var self = this, item = self.findLastItem(identity, safe);
+                if (item) { return self.indexAttribute ? XP.getAttribute(item, self.indexAttribute) : XP.indexOf(self.items, item); }
+            },
+
+            /**
+             * Finds an item, iterating from right to left.
+             *
+             * @method findLastItem
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [safe = false]
+             * @returns {Element | undefined}
+             */
+            findLastItem: function (identity, safe) {
+                return safe ? identity : XP.findLast(this.items, this.toDOMIdentity(identity));
+            },
+
+            /**
+             * Checks if an item is selectable.
+             *
+             * @method isSelectable
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [safe = false]
+             * @returns {boolean}
+             */
+            isSelectable: function (identity, safe) {
+                var self = this, item = self.findItem(identity, safe);
+                return XP.isElement(item) && !self.isSelected(item);
+            },
+
+            /**
+             * Checks if an item is selected.
+             *
+             * @method isSelected
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [safe = false]
+             * @returns {boolean}
+             */
+            isSelected: function (identity, safe) {
+                var self = this, item = self.findItem(identity, safe);
+                return self.multi ? XP.includes(self.selection, item) : self.selection === item;
+            },
+
+            /**
+             * Checks if an item is unselectable.
+             *
+             * @method isUnselectable
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [force = false]
+             * @param {boolean} [safe = false]
+             * @returns {boolean}
+             */
+            isUnselectable: function (identity, force, safe) {
+                var self = this, item = self.findItem(identity, safe);
+                return XP.isElement(item) && self.isSelected(item) && (force || self.multi || self.switchable);
+            },
+
+            /**
+             * Resets the selection.
+             *
+             * @method reset
+             * @returns {Element}
+             */
+            reset: function () {
+                var self = this;
+                self.selection = self.multi ? [] : null;
+                return self;
+            },
+
+            /**
+             * Selects an item.
+             *
+             * @method select
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [safe = false]
+             * @returns {Element | undefined}
+             */
+            select: function (identity, safe) {
+
+                // Vars
+                var self  = this,
+                    item  = self.findItem(identity, safe),
+                    index = self.findIndex(item, true);
+
+                // Checking
+                if (!item) { return; }
+
+                // Delaying
+                XP.delay(function () {
+
+                    // Checking
+                    if (!self.isSelectable(item)) { return; }
+
+                    // Firing
+                    if (XP.isPrevented(self.context.fire('xp-select', {firer: self.context, item: item, index: index, isMulti: self.multi, isSelected: true, isSwitchable: self.multi || self.switchable}))) { return; }
+
+                    // Selecting
+                    if (!self.multi) { self.unselect(self.selection, true); }
+                    if (!self.multi) { self.selection = item; } else { XP.append(self.selection, item); }
+                    if (!self.multi) { self.selected = index; } else { XP.append(self.selected, index); }
+
+                    // Setting
+                    self.selecting = true;
+                });
+
+                return item;
+            },
+
+            /**
+             * Selects all items.
+             *
+             * @method selectAll
+             * @param {Function} [predicate]
+             * @returns {Array}
+             */
+            selectAll: function (predicate) {
+                var self = this, items = self.multi ? self.findItems(predicate) : [];
+                return XP.map(items, function (item) { return self.select(item, true); });
+            },
+
+            /**
+             * Selects the prior selected item.
+             *
+             * @method selectPriorSelected
+             * @returns {Element | undefined}
+             */
+            selectPriorSelected: function () {
+                var self = this, item = self.priorSelected ? self.findItem(self.priorSelected) : null;
+                if (item) { return self.select(item, true); }
+            },
+
+            /**
+             * Selects the next item.
+             *
+             * @method selectNext
+             * @returns {Element | undefined}
+             */
+            selectNext: function () {
+                var self = this, item = !self.multi ? XP.getNext(self.items, self.selection) : null;
+                if (item) { return self.select(item, true); }
+            },
+
+            /**
+             * Selects the previous item.
+             *
+             * @method selectPrevious
+             * @returns {Element | undefined}
+             */
+            selectPrevious: function () {
+                var self = this, item = !self.multi ? XP.getPrevious(self.items, self.selection) : null;
+                if (item) { return self.select(item, true); }
+            },
+
+            /**
+             * Toggles active state on an item.
+             *
+             * @method switch
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [force = false]
+             * @param {boolean} [safe = false]
+             * @returns {Element | undefined}
+             */
+            switch: function (identity, force, safe) {
+                var self = this, item = self.findItem(identity, safe);
+                if (item) { return self.isSelected(item) ? self.unselect(item, force, true) : self.select(item, true); }
+            },
+
+            /**
+             * Toggles active state on all items.
+             *
+             * @method switchAll
+             * @param {Function} [predicate]
+             * @param {boolean} [force = false]
+             * @returns {Array}
+             */
+            switchAll: function (predicate, force) {
+                var self = this, items = self.multi ? self.findItems(predicate) : [];
+                return XP.map(items, function (item) { return self.switch(item, force, true); });
+            },
+
+            /**
+             * Unselects an item.
+             *
+             * @method unselect
+             * @param {Element | Function | number | string} identity
+             * @param {boolean} [force = false]
+             * @param {boolean} [safe = false]
+             * @returns {Element | undefined}
+             */
+            unselect: function (identity, force, safe) {
+
+                // Vars
+                var self  = this,
+                    item  = self.findItem(identity, safe),
+                    index = self.findIndex(item, true);
+
+                // Checking
+                if (!item) { return; }
+
+                // Delaying
+                XP.delay(function () {
+
+                    // Checking
+                    if (!self.isUnselectable(item, force)) { return; }
+
+                    // Firing
+                    if (XP.isPrevented(self.context.fire('xp-select', {firer: self.context, item: item, index: index, isMulti: self.multi, isSelected: false, isSwitchable: self.multi || self.switchable})) && !force) { return; }
+
+                    // Unselecting
+                    if (!self.multi) { self.selection = null; } else { XP.pull(self.selection, item); }
+                    if (!self.multi) { self.selected  = null; } else { XP.pull(self.selected, index); }
+
+                    // Setting
+                    self.selecting = true;
+                });
+
+                return item;
+            },
+
+            /**
+             * Unselects all items.
+             *
+             * @method unselectAll
+             * @param {Function} [predicate]
+             * @param {boolean} [force = false]
+             * @returns {Array}
+             */
+            unselectAll: function (predicate, force) {
+                var self = this, items = self.multi ? self.findItems(predicate) : [];
+                return XP.map(items, function (item) { return self.unselect(item, force, true); });
+            },
+
+            /*********************************************************************/
+
+            /**
+             * Find item from an activate event.
+             *
+             * @method findEvent
+             * @param {Node} target
+             * @returns {Element | undefined}
+             * @private
+             */
+            findEvent: function (target) {
+                var self = this, item;
+                do { item = self.findItem(target, true); target = item || target.parentNode; } while (target && target !== item && target !== self);
+                return item;
+            },
+
+            /**
+             * Refreshes the element.
+             *
+             * @method refresh
+             * @returns {Element}
+             * @private
+             */
+            refresh: function () {
+
+                // Vars
+                var self = this, selected = self.selected;
+
+                // Checking
+                if (self.multi !== XP.isArray(self.selected)) { return self; }
+
+                // CASE: Selection changed
+                if (self.selecting) { return XP.assign(self, {selecting: false}); }
+
+                // CASE: Selected changed
+                if (!self.mutating) { return XP.assign(self, {selection: self.multi ? XP.overwrite(self.selection, XP.map(self.selected, function (identity) { return self.findItem(identity); })) : (XP.isInput(self.selected, true) && self.findItem(self.selected)) || null}); }
+
+                // CASE: Items changed
+                self.selection = self.multi ? XP.overwrite(self.selection, XP.intersection(self.items, self.selection)) : (XP.includes(self.items, self.selection) ? self.selection : null);
+                self.selected  = self.multi ? XP.overwrite(self.selected, XP.map(function (item) { return self.findIndex(item, true); })) : self.findIndex(self.selection, true) || null;
+                self.selecting = self.selected !== selected && XP.isNullable(self.selected) !== XP.isNullable(selected);
+                self.mutating  = false;
+
+                return self;
+            },
+
+            /**
+             * Returns a DOM identity representation of `target`.
+             *
+             * @method toDOMIdentity
+             * @param {Element | Function | number | string} target
+             * @returns {Function | number}
+             * @private
+             */
+            toDOMIdentity: function (target) {
+                var self = this, attribute = self.indexAttribute, index = !attribute ? XP.toNumber(target) : null;
+                if (XP.isIndex(index)) { return index; }
+                if (XP.isString(target) && XP.isString(attribute, true)) { return function (element) { return XP.isElement(element) && target === element.getAttribute(attribute); }; }
+                if (XP.isElement(target) || XP.isFunction(target) || XP.isNullable(target)) { return XP.toDOMIdentity(target); }
+                throw new XP.ArgumentError(1, 'Element, Function, number or string');
+            },
+
+            /**
+             * Returns a DOM predicate representation of `target`.
+             *
+             * @method toDOMPredicate
+             * @param {Function} [target]
+             * @returns {Function}
+             * @private
+             */
+            toDOMPredicate: function (target) {
+                if (XP.isVoid(target) || XP.isFunction(target)) { return XP.toDOMPredicate(target); }
+                throw new XP.ArgumentError(1, 'Function');
+            },
+
+            /*********************************************************************/
+
+            // PUBLISH
+            publish: {
+
+                /**
+                 * The event on which the selection fires.
+                 *
+                 * @attribute activateEvent
+                 * @type string
+                 * @default ""
+                 */
+                activateEvent: {reflect: true, value: ''},
+
+                /**
+                 * The context element.
+                 *
+                 * @attribute context
+                 * @type Element
+                 */
+                context: {reflect: false, value: null},
+
+                /**
+                 * If set to true, the selectable items are searched deep.
+                 *
+                 * @attribute deep
+                 * @type boolean
+                 * @default false
+                 */
+                deep: {reflect: true, value: false},
+
+                /**
+                 * The index of the item to select by default.
+                 *
+                 * @attribute defaultSelected
+                 * @type number | string
+                 */
+                defaultSelected: {reflect: false, value: null},
+
+                /**
+                 * The attribute used as index.
+                 *
+                 * @attribute indexAttribute
+                 * @type string
+                 * @default ""
+                 */
+                indexAttribute: {reflect: true, value: ''},
+
+                /**
+                 * The selectable items.
+                 *
+                 * @attribute items
+                 * @type Array
+                 */
+                items: {reflect: false, value: null},
+
+                /**
+                 * The selector used to recognize selectable items.
+                 *
+                 * @attribute itemSelector
+                 * @type string
+                 * @default "[selectable]"
+                 */
+                itemSelector: {reflect: true, value: '[selectable]'},
+
+                /**
+                 * If set to true, multi selection is allowed.
+                 *
+                 * @attribute multi
+                 * @type boolean
+                 * @default false
+                 * @readonly
+                 */
+                multi: {reflect: true, value: false},
+
+                /**
+                 * The prior selected item's index.
+                 *
+                 * @attribute priorSelected
+                 * @type number | string
+                 * @readonly
+                 */
+                priorSelected: {reflect: false, value: null},
+
+                /**
+                 * The selected item's index.
+                 *
+                 * @attribute selected
+                 * @type Array | number | string
+                 */
+                selected: {reflect: false, value: null},
+
+                /**
+                 * The attribute set on selection.
+                 *
+                 * @attribute selectedAttribute
+                 * @type string
+                 * @default "active"
+                 */
+                selectedAttribute: {reflect: true, value: 'active'},
+
+                /**
+                 * The selected item.
+                 *
+                 * @attribute selection
+                 * @type Element
+                 * @readonly
+                 */
+                selection: {reflect: false, value: null},
+
+                /**
+                 * The `id` of the targeted element or the element itself.
+                 *
+                 * @attribute target
+                 * @type Element | string
+                 */
+                target: {reflect: false, value: null},
+
+                /**
+                 * If set to true, the unselection is allowed even if not multi.
+                 *
+                 * @attribute switchable
+                 * @type boolean
+                 * @default false
+                 */
+                switchable: {reflect: true, value: false}
+            },
+
+            /**
+             * The context element.
+             *
+             * @property context
+             * @type Element
+             * @readonly
+             * @private
+             */
+//            get context() { return this.host || this.parentNode; },
+
+            /**
+             * If set to true, the selector is initialized.
+             *
+             * @property initialized
+             * @type boolean
+             * @default false
+             * @readonly
+             */
+            initialized: false,
+
+            /**
+             * If set to true, the selector is currently mutating.
+             *
+             * @property mutating
+             * @type boolean
+             * @default false
+             * @readonly
+             */
+            mutating: false,
+
+            /**
+             * If set to true, the selection is about to change.
+             *
+             * @property selecting
+             * @type boolean
+             * @default false
+             * @readonly
+             */
+            selecting: false,
+
+            /*********************************************************************/
+
+            // OBSERVER
+            activateEventChanged: function (pre, post) {
+                var self = this;
+                if (pre) { XP.unlisten(self.context, pre, self.handleEventBound); }
+                if (post) { XP.listen(self.context, post, self.handleEventBound = self.handleEvent.bind(self)); }
+            },
+
+            // OBSERVER
+            contextChanged: function (pre, post) {
+                var self = this;
+                if (arguments.length < 2) { return; }
+                if (self.contextObserver) { self.contextObserver.disconnect(); }
+                self.items           = XP.overwrite(self.items, XP[self.deep ? 'getElements' : 'findElements'](self.context, self.itemSelector));
+                self.contextObserver = XP.onMutation(self.context, self.mutated.bind(self.refresh()), {childList: true, subtree: self.deep});
+            },
+
+            // OBSERVER
+            itemsChanged: function () {
+                var self = this, initialized = self.initialized;
+                self.initialized = self.initialized || self.items.length > 0;
+                self.fire('xp-items-change', {firer: self.context, items: self.items});
+                XP.delay(initialized ? XP.mock() : function () {
+                    if (XP.isInput(self.defaultSelected, true)) { self.select(self.defaultSelected); return; }
+                    if (XP.isInput(self.selected, true)) { self.select(self.selected); }
+                });
+            },
+
+            // OBSERVER
+            multiChanged: function (pre, post) {
+                var self = this;
+                self.priorSelected = null;
+                self.selected      = post ? XP.toArray(self.selected, true) : null;
+                self.selection     = post ? XP.toArray(self.selection, true) : null;
+            },
+
+            // OBSERVER
+            selectedChanged: function (pre) {
+                var self = this.refresh(), target = self.findTarget();
+                self.priorSelected = self.multi ? null : pre;
+                if (target) { target.selected = self.selected; }
+            },
+
+            // OBSERVER
+            selectionChanged: function () {
+                var self = this;
+                XP.delay(function () {
+                    self.context.fire('xp-selection-change', {firer: self.context, selection: self.selection, selected: self.selected, isMulti: self.multi, isSwitchable: self.multi || self.switchable});
+                    self.items.forEach(function (item) { XP.setAttribute(item, self.selectedAttribute, self.isSelected(item, true)); });
+                });
+            },
+
+            /*********************************************************************/
+
+            // LISTENER
+            created: function () {
+                this.items = [];
+            },
+
+            // LISTENER
+            mutated: function () {
+                var self = this;
+                self.items           = XP.overwrite(self.items, XP[self.deep ? 'getElements' : 'findElements'](self.context, self.itemSelector));
+                self.mutating        = true;
+                self.contextObserver = XP.onMutation(self.context, self.mutated.bind(self.refresh()), {childList: true, subtree: self.deep});
+            },
+
+            // LISTENER
+            ready: function () {
+                var self = this;
+                self.handleEventBound = self.handleEvent.bind(self);
+            },
+
+            /*********************************************************************/
+
+            // HANDLER
+            handleEvent: function (event) {
+
+                // Checking
+                if (event.type === 'click' && event.button) { return; }
+
+                // Vars
+                var self       = this,
+                    item       = self.findEvent(event.target),
+                    isSelected = item ? self.isSelected(item, true) : false;
+
+                // Switching
+                if (item && self[isSelected ? 'isUnselectable' : 'isSelectable'](item, true)) { self.switch(item, false, true); }
+            }
+        });
+    </script>
+
+</polymer-element>

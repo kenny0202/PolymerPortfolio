@@ -1,0 +1,36 @@
+{
+  "name": "xp-focused-state",
+  "license": "BSD-3-Clause",
+  "description": "A custom element used to add focusable capabilities to a context element",
+  "homepage": "http://expandjs.com/elements/xp-focused-state",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "xp-focused-state.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "_release": "04b473040f",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "04b473040f760c22f921e5edba3f4f1228bfdca4"
+  },
+  "_source": "git://github.com/ExpandJS/xp-focused-state.git",
+  "_target": "*",
+  "_originalSource": "ExpandJS/xp-focused-state"
+}

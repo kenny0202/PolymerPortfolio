@@ -9,6 +9,9 @@
 		<link rel="import" href="../bower_components/core-header-panel/core-header-panel.html">
 		<link rel="import" href="../bower_components/core-icons/core-icons.html">
 		<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+		<link rel="import" href="../bower_components/mat-paper/mat-paper.html">
+		<link rel="import" href="../bower_components/mat-item/mat-item.html">
+		<link rel="import" href="../bower_components/mat-list/mat-list.html">
 		<link rel="stylesheet" href="../css/base.css" shim-shadowdom="">	
 		<link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -26,6 +29,10 @@
 			.summary {
 				text-align: left;
 			}
+			.demo-container {
+				width: 120px;
+				margin: auto;
+			}
 		</style>
     </head>
     <body fullbleed layout vertical>
@@ -35,6 +42,23 @@
 				<span>NXT Robot</span>
 			</core-toolbar>
 			<div class="container">
+				<div class="row">
+					<div class="col-xs-6">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="Java" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+					<div class="col-xs-6">
+						<mat-paper class="demo-container" z="1">
+							<mat-list label="Subheader">
+								<mat-item label="Lejos API" style="text-align:center"></mat-item>
+							</mat-list>
+						</mat-paper>
+					</div>
+				</div>
+				<br>
 				<div class="summary">
 					<p>
 						Immediately after the final exams, the semester was not over yet. There was a 5 week projects course that took place.

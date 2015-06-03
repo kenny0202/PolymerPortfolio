@@ -1,0 +1,36 @@
+{
+  "name": "xp-targeter",
+  "license": "BSD-3-Clause",
+  "description": "A mixin used add targeting capabilities to an element",
+  "homepage": "http://expandjs.com/elements/xp-targeter",
+  "authors": [
+    "Giuliano Rullo <g.rullo@expandjs.com>",
+    "Maurizio Stefàno <m.stefano@expandjs.com>",
+    "Robert Manolea <r.manolea@expandjs.com>"
+  ],
+  "keywords": [
+    "web app",
+    "html5",
+    "expandjs",
+    "web-components"
+  ],
+  "main": [
+    "xp-targeter.html"
+  ],
+  "ignore": [
+    "**/.*"
+  ],
+  "dependencies": {
+    "expandjs": "ExpandJS/expandjs",
+    "polymer": "Polymer/polymer#^0.5"
+  },
+  "_release": "bcfe541986",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "bcfe5419862ac8e630ccd6b2ec3195f01b895c4f"
+  },
+  "_source": "git://github.com/ExpandJS/xp-targeter.git",
+  "_target": "*",
+  "_originalSource": "ExpandJS/xp-targeter"
+}

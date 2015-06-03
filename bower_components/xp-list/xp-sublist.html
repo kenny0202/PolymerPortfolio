@@ -1,0 +1,220 @@
+<!--
+@license
+Copyright (c) 2015 The ExpandJS authors. All rights reserved.
+This code may only be used under the BSD style license found at https://expandjs.github.io/LICENSE.txt
+The complete set of authors may be found at https://expandjs.github.io/AUTHORS.txt
+The complete set of contributors may be found at https://expandjs.github.io/CONTRIBUTORS.txt
+-->
+
+<!--
+This element is used to display a sublist of selectable items.
+It must be used in conjunction with xp-list.
+
+@element xp-sublist
+@description A custom element used to create a sub-list of selectable items
+@keywords web app, html5, expandjs, web-components
+@group navigation
+@homepage http://expandjs.com/elements/xp-sublist
+
+@dependency polymer Polymer/polymer#^0.5
+@dependency expandjs ExpandJS/expandjs
+@dependency xp-collapse ExpandJS/xp-collapse
+@dependency xp-master-state ExpandJS/xp-master-state
+@dependency xp-slave-state ExpandJS/xp-slave-state
+-->
+
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../expandjs/expandjs.html">
+<link rel="import" href="../xp-collapse/xp-collapse.html">
+<link rel="import" href="../xp-master-state/xp-master-state.html">
+<link rel="import" href="../xp-slave-state/xp-slave-state.html">
+<link rel="import" href="xp-list.html">
+
+<polymer-element name="xp-sublist" attributes="backward collapsible collapsed context duration easing sublists">
+
+    <template>
+        <style>
+            :host {
+                display: block;
+                overflow: visible;
+            }
+        </style>
+        <template context="{{}}" is="xp-master-state" id="xpMasterState" slaves="{{sublists}}" slaveTag="xp-sublist"></template>
+        <template context="{{}}" is="xp-slave-state" master="{{list}}" masterTag="xp-list"></template>
+        <template context="{{}}" is="xp-slave-state" master="{{superlist}}" masterTag="xp-sublist"></template>
+        <xp-collapse context="{{}}" id="xpSublistWrapper" backward="{{backward}}" collapsed="{{collapsed}}" duration="{{duration}}" easing="{{easing}}" locked="{{!collapsible}}">
+            <content id="content"></content>
+        </xp-collapse>
+    </template>
+
+    <script>
+        XPElement({
+
+            // ELEMENT
+            is: 'xp-sublist',
+
+            /*********************************************************************/
+
+            /**
+             * Fired when the slave is attached.
+             *
+             * @event xp-slave
+             * @param {Element} firer
+             * @param {Element} slave
+             * @param {string} masterSelector
+             * @param {string} masterTag
+             * @param {boolean} isAttached
+             * @bubbles
+             */
+
+            /*********************************************************************/
+
+            /**
+             * Collapses the sublist.
+             *
+             * @method collapse
+             * @returns {Element}
+             */
+            collapse: function () {
+                var self = this;
+                self.$.xpSublistWrapper.collapse();
+                return self;
+            },
+
+            /**
+             * Expands the sublist.
+             *
+             * @method expand
+             * @returns {Element}
+             */
+            expand: function () {
+                var self = this;
+                self.$.xpSublistWrapper.expand();
+                return self;
+            },
+
+            /**
+             * Toggles the collapsed state.
+             *
+             * @method toggle
+             * @returns {Element}
+             */
+            toggle: function () {
+                var self = this;
+                self.$.xpSublistWrapper.toggle();
+                return self;
+            },
+
+            /*********************************************************************/
+
+            // DELEGATES
+            eventDelegates: {
+                'xp-slave': 'handleSlave'
+            },
+
+            // OBSERVE
+            observe: {
+                'superlist.collapsed': 'collapsedObserver'
+            },
+
+            // PUBLISH
+            publish: {
+
+                /**
+                 * If set to true, the animation will act like a slide instead of a compress.
+                 *
+                 * @attribute backward
+                 * @type boolean
+                 * @default false
+                 */
+                backward: {reflect: true, value: false},
+
+                /**
+                 * If set to true, the sublist is collapsed.
+                 *
+                 * @attribute collapsed
+                 * @type boolean
+                 * @default false
+                 */
+                collapsed: {reflect: true, value: false},
+
+                /**
+                 * If set to true, the sublist is collapsible.
+                 *
+                 * @attribute collapsible
+                 * @type string
+                 * @default false
+                 */
+                collapsible: {reflect: true, value: false},
+
+                /**
+                 * The context element.
+                 *
+                 * @attribute context
+                 * @type Element
+                 */
+                context: {reflect: false, value: null},
+
+                /**
+                 * The animation's duration.
+                 *
+                 * @attribute duration
+                 * @type number
+                 * @default 330
+                 */
+                duration: {reflect: true, value: 330},
+
+                /**
+                 * The animation's easing.
+                 *
+                 * @attribute easing
+                 * @type string
+                 * @default "ease"
+                 */
+                easing: {reflect: true, value: 'ease'},
+
+                /**
+                 * The master list.
+                 *
+                 * @attribute list
+                 * @type Element
+                 * @readonly
+                 */
+                list: {reflect: false, value: null},
+
+                /**
+                 * The slave sublists.
+                 *
+                 * @attribute sublists
+                 * @type Array
+                 * @readonly
+                 */
+                sublists: {reflect: false, value: null},
+
+                /**
+                 * The master sublist.
+                 *
+                 * @attribute superlist
+                 * @type Element
+                 * @readonly
+                 */
+                superlist: {reflect: false, value: null}
+            },
+
+            /*********************************************************************/
+
+            // OBSERVER
+            collapsedChanged: function (pre, post) {
+                var self = this;
+                if (!post && (!self.list || !self.list.autoCollapseDisabled)) { XP.invoke(XP.findSiblingElements(self, 'xp-sublist'), 'collapse'); }
+                if (!post && self.superlist) { self.superlist.expand(); }
+            },
+
+            // OBSERVER
+            collapsedObserver: function (pre, post) {
+                if (post) { this.collapse(); }
+            }
+        });
+    </script>
+
+</polymer-element>
